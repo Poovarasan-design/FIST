@@ -55,6 +55,54 @@ export const facultyData: Faculty[] = [
   },
   {
     id: 'fac-3',
+    name: 'Mrs. R. Archana',
+    designation: 'Assistant Professor',
+    qualification: 'M.E., (Ph.D)',
+    areaOfExpertise: ['Data Science', 'Artificial Intelligence', 'Machine Learning', 'Predictive Analytics'],
+    researchInterests: ['Emerging AI Technologies', 'Data Science Frameworks', 'Predictive Modeling'],
+    photo: '/archana-mam.jpeg',
+    bio: 'Archana R is a dedicated faculty member with 5 years of teaching experience in the Department of Computer Science and Engineering. Her areas of specialization include Data Science and Artificial Intelligence. She is passionate about emerging technologies, research, and helping students develop strong analytical and problem-solving skills through practical, innovation-driven learning.',
+    email: 'archana.cse@nscet.org',
+    publicationsCount: 5,
+    experience: [
+      '5 Years of Academic Teaching & Research Experience in CSE'
+    ],
+    selectedPublications: [
+      '5 Research Publications in International & National Technical Journals'
+    ],
+    fundedProjects: [
+      '5 Funded Projects & Student Innovation Consultancies'
+    ],
+    patents: [
+      '2 Published Patents in Data Science & Intelligent Computing'
+    ],
+    awards: [
+      'Excellence in Academic Mentoring Award'
+    ]
+  },
+  {
+    id: 'fac-4',
+    name: 'Ms. Abirami Kayathiri S',
+    designation: 'Assistant Professor',
+    qualification: 'B.E - CSE, M.E - CSE',
+    areaOfExpertise: ['Vulnerability Detection', 'Cyber Security', 'Secure Software Engineering', 'Network Security'],
+    researchInterests: ['Software Vulnerability Analysis', 'Security Architecture', 'Automated Penetration Testing'],
+    photo: '/abi-mam.jpeg',
+    bio: 'Abirami Kayathiri is a dedicated faculty member with 2 years of teaching experience in the Department of Computer Science and Engineering. Her area of specialization is Vulnerability Detection, and she is passionate about cybersecurity, secure software development, and helping students build strong analytical and problem-solving skills through research and practical learning.',
+    email: 'abirami.cse@nscet.org',
+    publicationsCount: 5,
+    experience: [
+      '2 Years of Academic Teaching & Research Experience in CSE'
+    ],
+    selectedPublications: [
+      '5 Research Publications in Vulnerability Assessment & Cybersecurity Conferences'
+    ],
+    fundedProjects: [
+      '2 Funded Projects in Cybersecurity & Threat Mitigation'
+    ]
+  },
+  {
+    id: 'fac-5',
     name: 'Mrs. Anusuya V',
     designation: 'Assistant Professor',
     qualification: 'B.E (CSE), M.E (CSE)',
@@ -66,6 +114,36 @@ export const facultyData: Faculty[] = [
     publicationsCount: 2,
     experience: [
       '2 Years of Academic Teaching Experience in CSE'
+    ]
+  },
+  {
+    id: 'fac-6',
+    name: 'Mrs. Venkatalakshmi M',
+    designation: 'Assistant Professor',
+    qualification: 'B.E - CSE, M.E - CSE',
+    areaOfExpertise: ['Data Structures', 'Cyber Security', 'Front-End Development', 'Web Technologies'],
+    researchInterests: ['Algorithmic Data Structures', 'Modern UI Architectures', 'Cyber Threat Modeling'],
+    photo: '/venki-mam.jpg',
+    bio: 'Mrs. Venkatalakshmi M is an enthusiastic academician in the Department of Computer Science & Engineering. She specializes in Data Structures, Cyber Security, and Front-End Development, passionately guiding students in core programming paradigms and modern web interface design.',
+    email: 'venkatalakshmi.cse@nscet.org',
+    publicationsCount: 3,
+    experience: [
+      'Academic Teaching & Laboratory Mentoring Experience in CSE'
+    ]
+  },
+  {
+    id: 'fac-7',
+    name: 'Mrs. Vinothini V',
+    designation: 'Assistant Professor',
+    qualification: 'B.E - CSE, M.E - Software Engineering',
+    areaOfExpertise: ['Software Engineering', 'Software Architecture', 'Software Quality Assurance', 'Agile Methodologies'],
+    researchInterests: ['Component-Based Software Engineering', 'Verification & Validation', 'Code Quality Metrics'],
+    photo: '/vino-mam.jpeg',
+    bio: 'Mrs. Vinothini V is an experienced educator in the Department of Computer Science & Engineering specializing in Software Engineering. She is dedicated to instructing rigorous software lifecycle development, quality metrics, and object-oriented software engineering.',
+    email: 'vinothini.cse@nscet.org',
+    publicationsCount: 4,
+    experience: [
+      'Academic Teaching Experience in Department of CSE'
     ]
   }
 ];

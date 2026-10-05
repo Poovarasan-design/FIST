@@ -127,42 +127,46 @@ export const FacultySection: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {otherFaculty.map((fac) => (
               <div
                 key={fac.id}
                 onClick={() => setSelectedFaculty(fac)}
                 className="group cursor-pointer p-6 rounded-xl bg-[#0c0e15] border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 space-y-5"
               >
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-black border border-white/10">
+                <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black border border-white/10 shadow-lg">
                   <img
                     src={fac.photo}
                     alt={fac.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-102"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-sans text-slate-300">
-                    <span>{fac.qualification}</span>
-                    {fac.publicationsCount && <span>{fac.publicationsCount} Papers</span>}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-sans text-slate-200">
+                    <span className="font-medium text-white">{fac.qualification}</span>
+                    {fac.experience && fac.experience[0] && (
+                      <span className="text-purple-300 bg-purple-950/70 px-2 py-0.5 rounded border border-purple-500/30 text-[10px] font-medium">
+                        {fac.experience[0].split(' ')[0]} Exp
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <h4 className="text-lg font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
+                  <h4 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
                     <span>{fac.name}</span>
                     <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                   </h4>
                   <p className="text-xs font-sans text-purple-300 font-medium">
-                    {fac.designation}
+                    {fac.designation} — NSCET
                   </p>
-                  <p className="text-xs font-sans text-slate-300 line-clamp-2 leading-relaxed pt-1">
+                  <p className="text-xs font-sans text-slate-300 line-clamp-3 leading-relaxed pt-1">
                     {fac.bio}
                   </p>
                 </div>
 
                 <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-sans text-slate-400">
-                  <span>{fac.areaOfExpertise[0]}</span>
-                  <span className="text-purple-400 font-medium">View Profile →</span>
+                  <span className="truncate max-w-[200px] text-purple-200/80">{fac.areaOfExpertise[0]}</span>
+                  <span className="text-purple-400 font-medium hover:text-purple-300">View Dossier →</span>
                 </div>
               </div>
             ))}

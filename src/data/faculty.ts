@@ -34,38 +34,38 @@ export const facultyData: Faculty[] = [
   },
   {
     id: 'fac-2',
-    name: 'Dr. M. Radhika',
-    designation: 'Associate Professor & FIST Faculty Advisor',
-    qualification: 'Ph.D. in Software Engineering',
-    areaOfExpertise: ['Virtual Reality & Graphics', 'Software Engineering', 'Human-Computer Interaction'],
-    researchInterests: ['Immersive Pedagogy', 'Augmented Reality in Education', 'Software Quality Assurance'],
-    photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80',
-    bio: 'Chief Faculty Advisor for FIST Association, mentoring student innovation initiatives such as FIST VR DSA and spearheading collegiate hackathons.',
-    email: 'fist.advisor@college.edu',
-    publicationsCount: 28
+    name: 'Dr. K. Velkumar',
+    designation: 'Assistant Professor',
+    qualification: 'B.Tech. (IT), M.E (CSE), Ph.D',
+    areaOfExpertise: ['Recommendation Systems', 'Intelligent Computing', 'Machine Learning', 'Data Mining'],
+    researchInterests: ['Recommendation Algorithms', 'Intelligent Decision Systems', 'User Behavior Analytics'],
+    photo: '/velkumar.jpg',
+    bio: 'Dr. Velkumar K is a distinguished faculty member with over 20 years of teaching and research experience in the Department of Computer Science and Engineering. His area of specialization is Recommendation Systems. With significant contributions in research, patents, and academic excellence, he is committed to advancing intelligent computing technologies and mentoring students through innovation-driven learning.',
+    email: 'velkumar.cse@nscet.org',
+    publicationsCount: 10,
+    experience: [
+      '20 Years of Academic & Research Experience in CSE'
+    ],
+    selectedPublications: [
+      '10 Research Publications in International Journals & Conferences specializing in Recommendation Systems'
+    ],
+    patents: [
+      '5 Published / Awarded Patents in Intelligent Systems and Computing Frameworks'
+    ]
   },
   {
     id: 'fac-3',
-    name: 'Dr. A. Vignesh',
-    designation: 'Associate Professor',
-    qualification: 'Ph.D. in Artificial Intelligence & Robotics',
-    areaOfExpertise: ['Deep Learning', 'Computer Vision', 'Natural Language Processing'],
-    researchInterests: ['Generative Neural Models', 'Autonomous Vision Systems', 'Explainable AI'],
-    photo: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=500&q=80',
-    bio: 'Directs advanced deep learning laboratories, conducting sponsored industry research projects and mentoring competitive data science squads.',
-    email: 'faculty.ai@college.edu',
-    publicationsCount: 35
-  },
-  {
-    id: 'fac-4',
-    name: 'Prof. P. Karthik',
+    name: 'Mrs. Anusuya V',
     designation: 'Assistant Professor',
-    qualification: 'M.Tech / Ph.D. (Pursuing) in Computer Systems',
-    areaOfExpertise: ['Cloud Computing', 'Cybersecurity', 'DevOps & Microservices'],
-    researchInterests: ['Container Security', 'Zero-Trust Networks', 'Serverless Scalability'],
-    photo: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80',
-    bio: 'Certified cloud practitioner conducting hands-on student bootcamps on Kubernetes, Linux systems administration, and production DevOps tooling.',
-    email: 'faculty.cloud@college.edu',
-    publicationsCount: 16
+    qualification: 'B.E (CSE), M.E (CSE)',
+    areaOfExpertise: ['Software Engineering', 'Database Management', 'Object-Oriented Programming', 'Web Technologies'],
+    researchInterests: ['Modern Software Architectures', 'Educational Technology Pedagogy', 'Web Systems'],
+    photo: '/anusiya-mam.jpg',
+    bio: 'Mrs. Anusuya V is a dedicated faculty member in the Department of Computer Science & Engineering with 2 years of academic teaching experience. Committed to fostering core foundational computing concepts, student mentoring, and active project facilitation.',
+    email: 'anusuya.cse@nscet.org',
+    publicationsCount: 2,
+    experience: [
+      '2 Years of Academic Teaching Experience in CSE'
+    ]
   }
 ];

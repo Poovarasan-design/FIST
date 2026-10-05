@@ -6,6 +6,8 @@ interface HodCrystalFrameProps {
   imageAlt: string;
   qualification?: string;
   badgeText?: string;
+  objectPosition?: string;
+  imageFilter?: string;
   className?: string;
 }
 
@@ -14,6 +16,8 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
   imageAlt,
   qualification = 'M.E (CSE), Ph.D',
   badgeText = 'HEAD OF THE DEPARTMENT [I/C]',
+  objectPosition = '50% 10%',
+  imageFilter = 'contrast(1.06) brightness(1.05) saturate(1.03)',
   className = '',
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -23,11 +27,11 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), {
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
     stiffness: 260,
     damping: 24,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), {
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
     stiffness: 260,
     damping: 24,
   });
@@ -67,41 +71,43 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
         }}
         className="relative w-full aspect-[4/5] transition-shadow duration-500"
       >
-        {/* Ambient Back Glow - Trapped Purple Radiance */}
+        {/* Ambient Back Glow - Trapped Purple Radiance (behind the entire card) */}
         <div
           className="absolute -inset-4 rounded-3xl bg-gradient-to-b from-purple-600/30 via-violet-900/20 to-purple-500/25 blur-2xl -z-10 transition-opacity duration-500 pointer-events-none"
-          style={{ opacity: isHovered ? 0.9 : 0.55 }}
+          style={{ opacity: isHovered ? 0.85 : 0.5 }}
         />
 
-        {/* Inner Portrait Well */}
-        <div className="absolute inset-[24px] sm:inset-[28px] rounded-xl overflow-hidden bg-[#070512] shadow-2xl z-0">
+        {/* ========================================================================= */}
+        {/* INNER PORTRAIT WELL: PURE PROFESSIONAL ACADEMIC PRESENTATION              */}
+        {/* Clear eyes, clean skin tones, zero heavy purple tint, zero face overlays   */}
+        {/* ========================================================================= */}
+        <div className="absolute inset-[24px] sm:inset-[28px] rounded-xl overflow-hidden bg-[#130f24] shadow-2xl z-0">
+          {/* Subtle Studio Backdrop behind the subject */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(240,240,255,0.1)_0%,rgba(130,50,230,0.03)_60%,transparent_100%)] pointer-events-none" />
+
+          {/* Primary Photograph - Crisp, Clear, Natural Skin Tone & Lighting */}
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-full h-full object-cover object-top filter brightness-105 contrast-[1.03] transition-transform duration-700 ease-out"
+            className="relative z-0 w-full h-full object-cover transition-all duration-500 ease-out"
             style={{
-              transform: isHovered ? 'scale(1.04)' : 'scale(1)',
+              objectPosition: objectPosition,
+              filter: isHovered
+                ? `${imageFilter} brightness(1.07)`
+                : imageFilter,
+              transform: isHovered ? 'scale(1.02)' : 'scale(1)',
             }}
           />
 
-          {/* Portrait Vignette & Depth Shadow */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0518]/90 via-[#0a0518]/20 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0518]/40 via-transparent to-transparent pointer-events-none" />
+          {/* Subtle Grounding Shadow at bottom only (blends torso gently into frame plinth, never covers chin or face) */}
+          <div className="absolute bottom-0 inset-x-0 h-12 sm:h-14 bg-gradient-to-t from-[#090414]/85 via-[#090414]/25 to-transparent pointer-events-none z-[1]" />
 
-          {/* Dynamic Light Sweep Glint on Image */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/10 to-transparent"
-            animate={
-              isHovered
-                ? { x: ['-100%', '200%'], opacity: [0, 0.8, 0] }
-                : { x: '-100%', opacity: 0 }
-            }
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-          />
+          {/* Crisp recessed rim line for realistic portrait mount depth */}
+          <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/10 pointer-events-none z-[2]" />
         </div>
 
         {/* ========================================================================= */}
-        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Architectural Reference Adaptation) */}
+        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Unchanged Frame Design)             */}
         {/* ========================================================================= */}
         <svg
           viewBox="0 0 400 500"
@@ -141,15 +147,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               <stop offset="100%" stopColor="#ffffff" stopOpacity="0.95" />
             </linearGradient>
 
-            {/* Vertical Rail Specular Line */}
-            <linearGradient id="hodRailWhite" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-              <stop offset="20%" stopColor="#a855f7" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.95" />
-              <stop offset="80%" stopColor="#9333ea" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.85" />
-            </linearGradient>
-
             {/* Central Jewel Diamond Gradient */}
             <linearGradient id="hodEmblemJewel" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#f3e8ff" />
@@ -166,7 +163,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
           </defs>
 
           {/* 1. OUTER CHASSIS / BEVELED BASE FRAME */}
-          {/* Main outer border polygon with 45-degree chamfered corners */}
           <polygon
             points="
               50,22 350,22 
@@ -209,7 +205,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
           />
 
           {/* 2. LATERAL PILLARS & STEPPED CRYSTAL FACETS (LEFT & RIGHT RAILS) */}
-          {/* Left Vertical Stepped Facet */}
           <polygon
             points="18,120 34,136 34,200 22,212 18,212"
             fill="url(#hodFacetGlow)"
@@ -225,7 +220,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeOpacity="0.7"
           />
 
-          {/* Right Vertical Stepped Facet */}
           <polygon
             points="382,120 366,136 366,200 378,212 382,212"
             fill="url(#hodFacetGlow)"
@@ -241,17 +235,14 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeOpacity="0.7"
           />
 
-          {/* 3. PROTRUDING LATERAL CRYSTAL WING GEMS (Mid-Height Accents inspired by reference) */}
-          {/* Left Protruding Gem */}
+          {/* 3. PROTRUDING LATERAL CRYSTAL WING GEMS */}
           <g filter="url(#hodNeonGlow)">
-            {/* Outer Wing Tip */}
             <polygon
               points="18,214 0,250 18,286 28,250"
               fill="url(#hodFacetGlow)"
               stroke="url(#hodSpecularWhite)"
               strokeWidth="1.5"
             />
-            {/* Inner Cut Facets */}
             <polygon
               points="18,214 0,250 18,250"
               fill="#c084fc"
@@ -265,16 +256,13 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             <line x1="0" y1="250" x2="28" y2="250" stroke="#ffffff" strokeWidth="1.2" />
           </g>
 
-          {/* Right Protruding Gem */}
           <g filter="url(#hodNeonGlow)">
-            {/* Outer Wing Tip */}
             <polygon
               points="382,214 400,250 382,286 372,250"
               fill="url(#hodFacetGlow)"
               stroke="url(#hodSpecularWhite)"
               strokeWidth="1.5"
             />
-            {/* Inner Cut Facets */}
             <polygon
               points="382,214 400,250 382,250"
               fill="#c084fc"
@@ -288,8 +276,7 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             <line x1="372" y1="250" x2="400" y2="250" stroke="#ffffff" strokeWidth="1.2" />
           </g>
 
-          {/* 4. CORNER BRACKETS & CUT-CRYSTAL PRISMS (4 Corners) */}
-          {/* Top-Left Corner Cut Diamond */}
+          {/* 4. CORNER BRACKETS & CUT-CRYSTAL PRISMS */}
           <polygon
             points="18,54 50,22 58,30 30,58"
             fill="url(#hodFacetGlow)"
@@ -297,7 +284,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeWidth="1"
             strokeOpacity="0.9"
           />
-          {/* Top-Right Corner Cut Diamond */}
           <polygon
             points="382,54 350,22 342,30 370,58"
             fill="url(#hodFacetGlow)"
@@ -305,7 +291,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeWidth="1"
             strokeOpacity="0.9"
           />
-          {/* Bottom-Left Corner Cut Diamond */}
           <polygon
             points="18,446 50,478 58,470 30,442"
             fill="url(#hodFacetGlow)"
@@ -313,7 +298,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeWidth="1"
             strokeOpacity="0.9"
           />
-          {/* Bottom-Right Corner Cut Diamond */}
           <polygon
             points="382,446 350,478 342,470 370,442"
             fill="url(#hodFacetGlow)"
@@ -322,17 +306,14 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeOpacity="0.9"
           />
 
-          {/* 5. TOP SECTION: GRAND ORNAMENTAL CREST (Academic Leadership Structure) */}
-          {/* Outer Layer Wings extending laterally */}
+          {/* 5. TOP SECTION: GRAND ORNAMENTAL CREST */}
           <g filter="url(#hodNeonGlow)">
-            {/* Left Upper Wing */}
             <polygon
               points="60,22 130,8 180,18 160,28 80,30"
               fill="url(#hodFacetGlow)"
               stroke="url(#hodSpecularWhite)"
               strokeWidth="1.4"
             />
-            {/* Right Upper Wing */}
             <polygon
               points="340,22 270,8 220,18 240,28 320,30"
               fill="url(#hodFacetGlow)"
@@ -341,7 +322,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             />
           </g>
 
-          {/* Stepped Wing Accent Bevels */}
           <polygon
             points="84,18 140,8 174,16 160,22 100,22"
             fill="#ffffff"
@@ -353,9 +333,8 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             fillOpacity="0.3"
           />
 
-          {/* Central Top Emblem: Majestic Faceted Diamond Jewel & Academic Insignia */}
+          {/* Central Top Emblem */}
           <g filter="url(#hodNeonGlow)">
-            {/* Crest Base Shield */}
             <polygon
               points="200,-4 238,18 230,46 200,62 170,46 162,18"
               fill="url(#hodEmblemJewel)"
@@ -363,8 +342,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               strokeWidth="2"
             />
 
-            {/* Faceted Internal Diamond Cuts */}
-            {/* Top Pyramid */}
             <polygon
               points="200,-4 238,18 200,28"
               fill="#e9d5ff"
@@ -379,7 +356,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               stroke="#ffffff"
               strokeWidth="0.8"
             />
-            {/* Bottom Inverted Pyramid */}
             <polygon
               points="200,28 238,18 230,46 200,62"
               fill="#4c1d95"
@@ -395,7 +371,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               strokeWidth="0.8"
             />
 
-            {/* Center Core Jewel Spark */}
             <circle cx="200" cy="28" r="4" fill="#ffffff" />
             <polygon
               points="200,21 202,28 209,28 203,32 205,38 200,34 195,38 197,32 191,28 198,28"
@@ -403,8 +378,7 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             />
           </g>
 
-          {/* 6. BOTTOM ORNAMENTAL SECTION: PEDESTAL PLINTH & NAMEPLATE EMBLEM */}
-          {/* Symmetrical Base Wings */}
+          {/* 6. BOTTOM ORNAMENTAL SECTION: PEDESTAL PLINTH */}
           <polygon
             points="90,470 140,488 260,488 310,470 290,462 110,462"
             fill="url(#hodDeepBase)"
@@ -412,9 +386,8 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             strokeWidth="1.5"
           />
 
-          {/* Elevated Central Crystal Plaque (Reference S28 Plaque adaptation) */}
+          {/* Elevated Central Crystal Plaque */}
           <g filter="url(#hodNeonGlow)">
-            {/* Plaque Trapezoid Frame */}
             <polygon
               points="124,464 276,464 286,494 114,494"
               fill="url(#hodEmblemJewel)"
@@ -422,7 +395,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               strokeWidth="1.8"
             />
 
-            {/* Plaque Inner Specular Trim */}
             <polygon
               points="128,468 272,468 280,490 120,490"
               fill="#1e1035"
@@ -432,7 +404,6 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
               strokeOpacity="0.6"
             />
 
-            {/* Plinth Apex Finial Accent */}
             <polygon
               points="200,455 210,464 190,464"
               fill="#ffffff"
@@ -449,13 +420,33 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
         </svg>
 
         {/* ========================================================================= */}
-        {/* REFINED FLOATING CRYSTAL BADGES (Overlaid inside frame bounds) */}
+        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY (Never sweeps across the face)       */}
         {/* ========================================================================= */}
-        {/* Top Prestige Banner Tag */}
-        <div className="absolute top-[28px] sm:top-[34px] inset-x-0 flex justify-center z-20 pointer-events-none">
-          <div className="px-3.5 py-1 rounded-md bg-[#0e0720]/90 border border-purple-400/50 shadow-[0_4px_16px_rgba(147,51,234,0.35)] backdrop-blur-md flex items-center space-x-2">
+        <motion.div
+          className="absolute -inset-[18px] sm:-inset-[22px] pointer-events-none z-15 overflow-hidden rounded-3xl"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, transparent 55%, black 72%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, transparent 55%, black 72%)',
+          }}
+          animate={
+            isHovered
+              ? { opacity: [0, 0.7, 0], x: ['-80%', '120%'] }
+              : { opacity: 0, x: '-80%' }
+          }
+          transition={{ duration: 1.1, ease: 'easeInOut' }}
+        >
+          <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+        </motion.div>
+
+        {/* ========================================================================= */}
+        {/* REFINED FLOATING CRYSTAL BADGES                                           */}
+        {/* Positioned safely on crest/plinth without covering the face or head       */}
+        {/* ========================================================================= */}
+        {/* Top Prestige Banner Tag - Mounted high on the apex crest, completely above portrait */}
+        <div className="absolute top-[4px] sm:top-[6px] inset-x-0 flex justify-center z-20 pointer-events-none">
+          <div className="px-3 py-0.5 rounded-md bg-[#0e0720]/95 border border-purple-400/50 shadow-[0_2px_12px_rgba(147,51,234,0.35)] backdrop-blur-md flex items-center space-x-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-300 animate-pulse" />
-            <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.16em] text-purple-100 uppercase">
+            <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-purple-100 uppercase">
               {badgeText}
             </span>
           </div>

@@ -6,6 +6,17 @@ import { Modal } from '../components/Modal';
 import { HodCrystalFrame } from '../components/HodCrystalFrame';
 import { FacultyCrystalFrame } from '../components/FacultyCrystalFrame';
 
+// Optimized photographic positioning and tone clarity per faculty portrait
+const facultyPhotoSettings: Record<string, { objectPosition: string; imageFilter: string }> = {
+  'fac-1': { objectPosition: '50% 10%', imageFilter: 'contrast(1.06) brightness(1.05) saturate(1.03)' }, // Dr. J. Mathalai Raj (HOD)
+  'fac-2': { objectPosition: '50% 12%', imageFilter: 'contrast(1.07) brightness(1.05) saturate(1.02)' }, // Dr. K. Velkumar
+  'fac-3': { objectPosition: '50% 12%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.04)' }, // Mrs. R. Archana
+  'fac-4': { objectPosition: '50% 12%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.02)' }, // Ms. Abirami Kayathiri S
+  'fac-5': { objectPosition: '50% 12%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.04)' }, // Mrs. Anusuya V
+  'fac-6': { objectPosition: '50% 18%', imageFilter: 'contrast(1.10) brightness(1.07) saturate(1.05)' }, // Mrs. Venkatalakshmi M
+  'fac-7': { objectPosition: '50% 14%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.03)' }, // Mrs. Vinothini V
+};
+
 export const FacultySection: React.FC = () => {
   const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null);
 
@@ -41,6 +52,8 @@ export const FacultySection: React.FC = () => {
                 imageAlt={hod.name}
                 qualification={hod.qualification}
                 badgeText="HEAD OF THE DEPARTMENT [I/C]"
+                objectPosition={facultyPhotoSettings[hod.id]?.objectPosition || '50% 10%'}
+                imageFilter={facultyPhotoSettings[hod.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
                 className="w-full max-w-[360px] sm:max-w-[400px]"
               />
             </div>
@@ -127,46 +140,62 @@ export const FacultySection: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherFaculty.map((fac) => (
-              <div
-                key={fac.id}
-                onClick={() => setSelectedFaculty(fac)}
-                className="group cursor-pointer p-6 rounded-2xl bg-gradient-to-br from-[#0d071d]/90 via-[#090414]/95 to-[#06020c] border border-purple-500/20 hover:border-purple-400/50 shadow-lg hover:shadow-[0_12px_36px_rgba(147,51,234,0.18)] transition-all duration-300 space-y-5 flex flex-col justify-between"
-              >
-                {/* Faculty Futuristic Crystal Profile Frame */}
-                <div className="w-full flex justify-center pt-1">
-                  <FacultyCrystalFrame
-                    imageSrc={fac.photo}
-                    imageAlt={fac.name}
-                    qualification={fac.qualification}
-                    experience={fac.experience && fac.experience[0] ? fac.experience[0] : ''}
-                    className="w-full max-w-[320px]"
-                  />
-                </div>
+            {otherFaculty.map((fac) => {
+              const settings = facultyPhotoSettings[fac.id] || {
+                objectPosition: '50% 14%',
+                imageFilter: 'contrast(1.06) brightness(1.05) saturate(1.03)',
+              };
 
-                <div className="space-y-2 flex-1 pt-1">
-                  <h4 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
-                    <span>{fac.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-purple-400 group-hover:text-white transition-colors" />
-                  </h4>
-                  <p className="text-xs font-sans text-purple-300 font-medium">
-                    {fac.designation} — NSCET
-                  </p>
-                  <p className="text-xs font-sans text-slate-300 line-clamp-3 leading-relaxed pt-1">
-                    {fac.bio}
-                  </p>
-                </div>
+              return (
+                <div
+                  key={fac.id}
+                  onClick={() => setSelectedFaculty(fac)}
+                  className="group cursor-pointer p-6 rounded-2xl bg-gradient-to-br from-[#0d071d]/90 via-[#090414]/95 to-[#06020c] border border-purple-500/20 hover:border-purple-400/50 shadow-lg hover:shadow-[0_12px_36px_rgba(147,51,234,0.18)] transition-all duration-300 space-y-5 flex flex-col justify-between"
+                >
+                  {/* Faculty Futuristic Crystal Profile Frame */}
+                  <div className="w-full flex justify-center pt-1">
+                    <FacultyCrystalFrame
+                      imageSrc={fac.photo}
+                      imageAlt={fac.name}
+                      qualification={fac.qualification}
+                      experience={fac.experience && fac.experience[0] ? fac.experience[0] : ''}
+                      objectPosition={settings.objectPosition}
+                      imageFilter={settings.imageFilter}
+                      className="w-full max-w-[320px]"
+                    />
+                  </div>
 
-                <div className="pt-3 border-t border-purple-500/15 flex items-center justify-between text-xs font-sans text-slate-400">
-                  <span className="truncate max-w-[180px] text-purple-200/90 font-medium">
-                    {fac.areaOfExpertise[0]}
-                  </span>
-                  <span className="text-purple-300 font-medium group-hover:text-purple-200 group-hover:underline">
-                    View Dossier →
-                  </span>
+                  <div className="space-y-2 flex-1 pt-1">
+                    <h4 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
+                      <span>{fac.name}</span>
+                      <ArrowUpRight className="w-4 h-4 text-purple-400 group-hover:text-white transition-colors" />
+                    </h4>
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-sans text-purple-300 font-medium">
+                        {fac.designation} — NSCET
+                      </p>
+                      {fac.experience && fac.experience[0] && (
+                        <span className="text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-purple-950/60 border border-purple-400/30 text-purple-200">
+                          {fac.experience[0].split(' ')[0]} Exp
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs font-sans text-slate-300 line-clamp-3 leading-relaxed pt-1">
+                      {fac.bio}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-purple-500/15 flex items-center justify-between text-xs font-sans text-slate-400">
+                    <span className="truncate max-w-[180px] text-purple-200/90 font-medium">
+                      {fac.areaOfExpertise[0]}
+                    </span>
+                    <span className="text-purple-300 font-medium group-hover:text-purple-200 group-hover:underline">
+                      View Dossier →
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -183,12 +212,14 @@ export const FacultySection: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-purple-950/20 p-6 rounded-2xl border border-purple-500/25">
                 {/* Modal Profile Frame */}
                 <div className="md:col-span-5 flex justify-center py-2">
-                  {selectedFaculty.id === 'hod-mathalai-raj' ? (
+                  {selectedFaculty.id === 'fac-1' ? (
                     <HodCrystalFrame
                       imageSrc={selectedFaculty.photo}
                       imageAlt={selectedFaculty.name}
                       qualification={selectedFaculty.qualification}
-                      badgeText="HEAD OF DEPARTMENT [I/C]"
+                      badgeText="HEAD OF THE DEPARTMENT [I/C]"
+                      objectPosition={facultyPhotoSettings[selectedFaculty.id]?.objectPosition || '50% 10%'}
+                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
                       className="w-full max-w-[280px]"
                     />
                   ) : (
@@ -197,6 +228,8 @@ export const FacultySection: React.FC = () => {
                       imageAlt={selectedFaculty.name}
                       qualification={selectedFaculty.qualification}
                       experience={selectedFaculty.experience && selectedFaculty.experience[0] ? selectedFaculty.experience[0] : ''}
+                      objectPosition={facultyPhotoSettings[selectedFaculty.id]?.objectPosition || '50% 14%'}
+                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
                       className="w-full max-w-[260px]"
                     />
                   )}

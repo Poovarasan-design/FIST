@@ -6,6 +6,8 @@ interface FacultyCrystalFrameProps {
   imageAlt: string;
   qualification?: string;
   experience?: string;
+  objectPosition?: string;
+  imageFilter?: string;
   className?: string;
 }
 
@@ -14,6 +16,8 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
   imageAlt,
   qualification = '',
   experience = '',
+  objectPosition = '50% 14%',
+  imageFilter = 'contrast(1.06) brightness(1.05) saturate(1.03)',
   className = '',
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -23,11 +27,11 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [7, -7]), {
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), {
     stiffness: 240,
     damping: 22,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-7, 7]), {
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), {
     stiffness: 240,
     damping: 22,
   });
@@ -67,41 +71,43 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
         }}
         className="relative w-full aspect-[4/5] transition-shadow duration-500"
       >
-        {/* Ambient Back Glow - Soft Lavender & Amethyst */}
+        {/* Ambient Back Glow - Soft Lavender & Amethyst (behind entire card) */}
         <div
           className="absolute -inset-2 rounded-2xl bg-gradient-to-b from-purple-600/20 via-violet-900/15 to-purple-500/15 blur-xl -z-10 transition-opacity duration-500 pointer-events-none"
-          style={{ opacity: isHovered ? 0.75 : 0.4 }}
+          style={{ opacity: isHovered ? 0.7 : 0.35 }}
         />
 
-        {/* Inner Portrait Well */}
-        <div className="absolute inset-[18px] sm:inset-[20px] rounded-lg overflow-hidden bg-[#070512] shadow-xl z-0">
+        {/* ========================================================================= */}
+        {/* INNER PORTRAIT WELL: NATURAL PROFESSIONAL FACULTY PRESENTATION            */}
+        {/* Crisp face visibility, natural lighting, zero dark purple face filters    */}
+        {/* ========================================================================= */}
+        <div className="absolute inset-[18px] sm:inset-[20px] rounded-lg overflow-hidden bg-[#130f24] shadow-xl z-0">
+          {/* Subtle Studio Backdrop */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(240,240,255,0.08)_0%,rgba(120,40,200,0.02)_60%,transparent_100%)] pointer-events-none" />
+
+          {/* Primary Photograph - High Contrast, Clear Eyes, Natural Skin & Clothes */}
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-full h-full object-cover object-top filter brightness-105 contrast-[1.02] transition-transform duration-600 ease-out"
+            className="relative z-0 w-full h-full object-cover transition-all duration-500 ease-out"
             style={{
-              transform: isHovered ? 'scale(1.03)' : 'scale(1)',
+              objectPosition: objectPosition,
+              filter: isHovered
+                ? `${imageFilter} brightness(1.06)`
+                : imageFilter,
+              transform: isHovered ? 'scale(1.02)' : 'scale(1)',
             }}
           />
 
-          {/* Portrait Vignette & Depth Shadow */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0518]/90 via-[#0a0518]/25 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0518]/30 via-transparent to-transparent pointer-events-none" />
+          {/* Minimal Grounding Shadow at bottom only (blends torso gently into bottom plinth) */}
+          <div className="absolute bottom-0 inset-x-0 h-10 sm:h-12 bg-gradient-to-t from-[#090414]/80 via-[#090414]/20 to-transparent pointer-events-none z-[1]" />
 
-          {/* Shimmer Light Sweep on Hover */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/[0.08] to-transparent"
-            animate={
-              isHovered
-                ? { x: ['-100%', '200%'], opacity: [0, 0.7, 0] }
-                : { x: '-100%', opacity: 0 }
-            }
-            transition={{ duration: 1.1, ease: 'easeInOut' }}
-          />
+          {/* Recessed Rim Line for Portrait Mount Depth */}
+          <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/10 pointer-events-none z-[2]" />
         </div>
 
         {/* ========================================================================= */}
-        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Faculty Refined Architecture)       */}
+        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Unchanged Frame Design)             */}
         {/* ========================================================================= */}
         <svg
           viewBox="0 0 360 450"
@@ -189,7 +195,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
           />
 
           {/* 2. LATERAL CRYSTAL ACCENT GEMS (Mid-Height) */}
-          {/* Left Mid-Facet */}
           <g filter="url(#facGlow)">
             <polygon
               points="14,205 2,225 14,245 20,225"
@@ -200,7 +205,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             <line x1="2" y1="225" x2="20" y2="225" stroke="#ffffff" strokeWidth="0.8" />
           </g>
 
-          {/* Right Mid-Facet */}
           <g filter="url(#facGlow)">
             <polygon
               points="346,205 358,225 346,245 340,225"
@@ -212,7 +216,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
           </g>
 
           {/* 3. FOUR CORNER CUT PRISMS */}
-          {/* Top-Left Corner Facet */}
           <polygon
             points="14,42 40,16 46,22 20,48"
             fill="url(#facFacetGlow)"
@@ -220,7 +223,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             strokeWidth="0.8"
             strokeOpacity="0.8"
           />
-          {/* Top-Right Corner Facet */}
           <polygon
             points="346,42 320,16 314,22 340,48"
             fill="url(#facFacetGlow)"
@@ -228,7 +230,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             strokeWidth="0.8"
             strokeOpacity="0.8"
           />
-          {/* Bottom-Left Corner Facet */}
           <polygon
             points="14,408 40,434 46,428 20,402"
             fill="url(#facFacetGlow)"
@@ -236,7 +237,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             strokeWidth="0.8"
             strokeOpacity="0.8"
           />
-          {/* Bottom-Right Corner Facet */}
           <polygon
             points="346,408 320,434 314,428 340,402"
             fill="url(#facFacetGlow)"
@@ -247,7 +247,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
 
           {/* 4. REFINED TOP SECTION: CRYSTAL CHEVRON & AMETHYST DIAMOND */}
           <g filter="url(#facGlow)">
-            {/* Top Wings */}
             <polygon
               points="80,16 135,6 180,12 165,18 95,20"
               fill="url(#facFacetGlow)"
@@ -261,7 +260,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
               strokeWidth="1"
             />
 
-            {/* Central Top Crystal Jewel */}
             <polygon
               points="180,2 202,16 180,30 158,16"
               fill="url(#facFacetGlow)"
@@ -278,7 +276,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
 
           {/* 5. REFINED BOTTOM PLINTH & BASE PLATE */}
           <g filter="url(#facGlow)">
-            {/* Base Plaque Frame */}
             <polygon
               points="110,422 250,422 258,442 102,442"
               fill="url(#facDeepBase)"
@@ -292,7 +289,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
               stroke="#a855f7"
               strokeWidth="0.8"
             />
-            {/* Apex Accent Pip */}
             <polygon
               points="180,416 186,422 174,422"
               fill="#ffffff"
@@ -307,9 +303,28 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
         </svg>
 
         {/* ========================================================================= */}
+        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY (Never sweeps across the face)       */}
+        {/* ========================================================================= */}
+        <motion.div
+          className="absolute -inset-[12px] sm:-inset-[14px] pointer-events-none z-15 overflow-hidden rounded-2xl"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, transparent 55%, black 72%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, transparent 55%, black 72%)',
+          }}
+          animate={
+            isHovered
+              ? { opacity: [0, 0.65, 0], x: ['-80%', '120%'] }
+              : { opacity: 0, x: '-80%' }
+          }
+          transition={{ duration: 1.0, ease: 'easeInOut' }}
+        >
+          <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent skew-x-12" />
+        </motion.div>
+
+        {/* ========================================================================= */}
         {/* INTEGRATED REFINED PLAQUE BADGES                                          */}
         {/* ========================================================================= */}
-        {/* Bottom Central Plaque: Qualification / Designation Text */}
+        {/* Bottom Central Plaque: Qualification Text */}
         <div className="absolute bottom-[2px] sm:bottom-[4px] inset-x-0 flex justify-center z-20 pointer-events-none">
           <div className="px-3 py-0.5 flex items-center justify-center space-x-1">
             <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.16em] text-white uppercase drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
@@ -317,15 +332,6 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             </span>
           </div>
         </div>
-
-        {/* Top-Right Experience Badge (if provided) */}
-        {experience && (
-          <div className="absolute top-[20px] right-[20px] z-20 pointer-events-none">
-            <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-purple-950/85 border border-purple-400/40 text-purple-200 shadow-sm backdrop-blur-sm">
-              {experience.split(' ')[0]} Exp
-            </span>
-          </div>
-        )}
       </motion.div>
     </motion.div>
   );

@@ -67,50 +67,62 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, activeSectio
           >
             <img
               src="/fist-logo.jpg"
-              alt="FIST"
-              className="w-7 h-7 object-contain rounded-full border border-purple-500/40 group-hover:border-purple-400 transition-colors"
+              alt="FIST Crest"
+              className="w-8 h-8 object-contain rounded-full border border-purple-500/40 group-hover:border-purple-400 transition-colors shadow-[0_0_12px_rgba(168,85,247,0.35)]"
             />
             <div className="flex flex-col text-left">
-              <div className="flex items-center space-x-1.5">
-                <span className="font-display font-bold text-sm tracking-[0.14em] text-white uppercase">
+              <div className="flex items-center space-x-2">
+                <span className="font-display font-extrabold text-base tracking-wider text-white">
                   FIST
                 </span>
-                <span className="text-[10px] font-mono text-purple-400">/ CSE</span>
+                <span className="h-3 w-[1px] bg-white/20" />
+                <span className="font-sans text-xs text-slate-300 font-medium tracking-wide">
+                  Dept. of CSE
+                </span>
               </div>
             </div>
           </a>
 
-          {/* Desktop Nav Items without unwanted connect buttons */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => {
-              const targetId = item.href.replace('#', '');
-              const isActive = activeSection === targetId;
+          {/* Desktop Nav Items and Theme Toggle */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <nav className="flex items-center space-x-1">
+              {navItems.map((item) => {
+                const targetId = item.href.replace('#', '');
+                const isActive = activeSection === targetId;
 
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-mono tracking-wider uppercase transition-colors ${
-                    isActive
-                      ? 'text-white font-medium bg-purple-950/40 border border-purple-500/20'
-                      : 'text-slate-400 hover:text-white hover:bg-white/[0.03]'
-                  }`}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
-          </nav>
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium tracking-wide transition-all ${
+                      isActive
+                        ? 'text-white font-semibold bg-purple-950/60 border border-purple-500/30 shadow-[0_0_12px_rgba(168,85,247,0.2)]'
+                        : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    {item.name}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 rounded text-slate-400 hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            <div className="h-4 w-[1px] bg-white/10" />
+
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          </div>
+
+          {/* Mobile menu trigger and Theme Toggle */}
+          <div className="lg:hidden flex items-center space-x-2">
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-1.5 rounded text-slate-300 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile drawer */}
@@ -121,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, activeSectio
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="block px-3 py-2 rounded text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white hover:bg-white/[0.04]"
+                className="block px-3 py-2 rounded text-xs font-sans font-medium tracking-wide text-slate-300 hover:text-white hover:bg-white/[0.04]"
               >
                 {item.name}
               </a>

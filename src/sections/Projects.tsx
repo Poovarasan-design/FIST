@@ -18,7 +18,7 @@ export const Projects: React.FC = () => {
         <div className="flex items-center space-x-3 mb-12">
           <span className="font-mono text-xs text-purple-400 font-semibold tracking-widest">02</span>
           <div className="h-[1px] w-8 bg-white/20" />
-          <span className="font-mono text-xs text-slate-400 uppercase tracking-[0.25em]">SYSTEMS & REPOSITORIES</span>
+          <span className="font-sans text-xs text-slate-400 uppercase tracking-widest font-semibold">SYSTEMS & REPOSITORIES</span>
         </div>
 
         {/* Section Heading */}
@@ -27,12 +27,12 @@ export const Projects: React.FC = () => {
             <h2 className="text-4xl sm:text-6xl font-bold tracking-tighter text-white">
               What our students architect & ship.
             </h2>
-            <p className="text-sm font-mono text-slate-400">
-              ONE PROJECT = ONE VISUAL MOMENT. Deployed software, spatial VR environments, and production systems.
+            <p className="text-sm font-sans text-slate-300 leading-relaxed">
+              Production software, spatial computing frameworks, and full-stack systems designed and deployed by CSE undergraduates.
             </p>
           </div>
 
-          <span className="font-mono text-xs text-purple-300 px-3.5 py-1.5 rounded-full bg-purple-950/40 border border-purple-500/30">
+          <span className="font-sans text-xs font-medium text-purple-200 px-3.5 py-1.5 rounded-full bg-purple-950/40 border border-purple-500/30">
             65+ Systems in Active Deployment
           </span>
         </div>

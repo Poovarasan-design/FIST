@@ -11,7 +11,7 @@ export const StudentLeadership: React.FC = () => {
   const president = studentsData[0];
   const vicePresident = {
     id: 'student-vp',
-    name: '[Add Student Name: Vice President, FIST]',
+    name: 'Hariharan R.',
     role: 'Student Vice President & Technical Operations Lead',
     year: 'Final Year CSE',
     category: 'Campus Leaders' as const,
@@ -59,10 +59,10 @@ export const StudentLeadership: React.FC = () => {
             >
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-mono tracking-widest uppercase bg-purple-950/60 border border-purple-500/30 text-purple-300 font-semibold">
-                    {idx === 0 ? 'ASSOCIATION PRESIDENT' : 'ASSOCIATION VICE PRESIDENT'}
+                  <span className="px-3 py-1 rounded-full text-xs font-sans bg-purple-950/60 border border-purple-500/30 text-purple-200 font-medium">
+                    {idx === 0 ? 'Association President' : 'Association Vice President'}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">
+                  <span className="text-xs font-sans text-slate-400 font-medium">
                     {leader.year}
                   </span>
                 </div>
@@ -81,21 +81,21 @@ export const StudentLeadership: React.FC = () => {
                       <span>{leader.name}</span>
                       <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                     </h3>
-                    <p className="text-xs font-mono text-cyan-300">
+                    <p className="text-xs font-sans text-purple-300 font-medium">
                       {leader.role}
                     </p>
-                    <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed pt-1">
+                    <p className="text-xs font-sans text-slate-300 line-clamp-3 leading-relaxed pt-1">
                       {leader.achievement}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="truncate max-w-[280px]">
+              <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-sans text-slate-400">
+                <span className="truncate max-w-[280px] text-slate-300">
                   {leader.skills.slice(0, 3).join(' • ')}
                 </span>
-                <span className="text-purple-400 font-medium">VIEW DOSSIER →</span>
+                <span className="text-purple-300 font-medium">View Profile →</span>
               </div>
             </div>
           ))}
@@ -106,7 +106,7 @@ export const StudentLeadership: React.FC = () => {
           isOpen={!!selectedLeader}
           onClose={() => setSelectedLeader(null)}
           title={selectedLeader?.name}
-          subtitle={`EXECUTIVE DOSSIER • ${selectedLeader?.role}`}
+          subtitle={`Student Leadership Profile • ${selectedLeader?.role}`}
         >
           {selectedLeader && (
             <div className="space-y-6">

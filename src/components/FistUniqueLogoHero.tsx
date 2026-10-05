@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { Shield, Cpu, Activity, Sparkles, Terminal } from 'lucide-react';
+import { Shield, GraduationCap, Cpu, Activity, Sparkles, Terminal } from 'lucide-react';
 
 interface FistUniqueLogoHeroProps {
   className?: string;
@@ -92,60 +92,39 @@ export const FistUniqueLogoHero: React.FC<FistUniqueLogoHeroProps> = ({
           isSmall ? 'w-[280px] sm:w-[310px] h-[280px] sm:h-[310px]' : 'w-[340px] sm:w-[380px] h-[340px] sm:h-[380px]'
         } flex items-center justify-center`}
       >
-        {/* Outer Rotating Cybernetic Orbital Ring */}
+        {/* Refined Smooth Ethereal Orbital Halo */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-0 rounded-full border border-purple-500/25 border-dashed pointer-events-none"
+          transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-0 rounded-full border border-purple-500/20 pointer-events-none shadow-[0_0_30px_rgba(168,85,247,0.1)]"
         />
 
-        {/* Outer Fine Tick Ring */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 380 380">
-          <circle
-            cx="190"
-            cy="190"
-            r="175"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.12)"
-            strokeWidth="1"
-            strokeDasharray="4 8"
-          />
-          <circle
-            cx="190"
-            cy="190"
-            r="155"
-            fill="none"
-            stroke="rgba(168, 85, 247, 0.3)"
-            strokeWidth="1.5"
-            strokeDasharray="16 32"
-          />
-        </svg>
+        {/* Delicate Outer Hairline Orbit */}
+        <div className="absolute inset-[-14px] rounded-full border border-white/[0.08] pointer-events-none" />
 
         {/* Counter-Rotating Inner Energy Trajectory with Orbiting Satellites */}
         <motion.div
           animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-[290px] h-[290px] rounded-full border border-white/15 pointer-events-none"
+          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-[290px] h-[290px] rounded-full border border-purple-400/20 pointer-events-none"
         >
-          {/* Orbiting Satellite 1: Pure White Star */}
-          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_#ffffff] flex items-center justify-center">
-            <div className="w-1 h-1 rounded-full bg-purple-950" />
-          </div>
+          {/* Orbiting Satellite 1: Pure White Pearl */}
+          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_#ffffff]" />
 
-          {/* Orbiting Satellite 2: Vibrant Purple Node */}
-          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-purple-400 shadow-[0_0_14px_#a855f7]" />
+          {/* Orbiting Satellite 2: Soft Purple Jewel */}
+          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-purple-400 shadow-[0_0_12px_#a855f7]" />
         </motion.div>
 
-        {/* Tilted Ellipse Orbital Halo */}
+        {/* Tilted Ellipse Orbital Accent */}
         <div
-          className="absolute w-[320px] h-[130px] rounded-[100%] border border-purple-400/30 pointer-events-none"
-          style={{ transform: 'rotate(-25deg)' }}
+          className="absolute w-[320px] h-[130px] rounded-[100%] border border-purple-400/25 pointer-events-none"
+          style={{ transform: 'rotate(-22deg)' }}
         />
 
         {/* 3. The Core Floating FIST Emblem Glass Chassis */}
         <motion.div
           animate={{
-            scale: isHovered ? 1.04 : 1,
+            scale: isHovered ? 1.03 : 1,
             y: [0, -6, 0],
           }}
           transition={{
@@ -215,65 +194,59 @@ export const FistUniqueLogoHero: React.FC<FistUniqueLogoHeroProps> = ({
           </AnimatePresence>
         </motion.div>
 
-        {/* 4. Surrounding Interactive Telemetry & Guild Chips */}
-        {/* Chip 1: Top Left - EST. 2014 */}
-        <motion.div
-          style={{ translateZ: 50 }}
-          onMouseEnter={() => setActiveChip('est')}
-          onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -top-3 -left-3 sm:-left-6 px-3 py-1.5 rounded-lg backdrop-blur-md border text-[11px] font-mono tracking-wider transition-all duration-300 flex items-center space-x-2 shadow-lg ${
-            activeChip === 'est'
-              ? 'bg-purple-900/60 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#090b14]/80 border-white/15 text-slate-300'
-          }`}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-          <span>EST. 2014</span>
-        </motion.div>
-
-        {/* Chip 2: Top Right - DEPT OF CSE */}
+        {/* 4. Three Professional Institutional Badges (EST. 2014 Removed, Professional Human Typography) */}
+        {/* Badge 1: Top Right - Dept. of Computer Science */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('dept')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -top-3 -right-3 sm:-right-6 px-3 py-1.5 rounded-lg backdrop-blur-md border text-[11px] font-mono tracking-wider transition-all duration-300 flex items-center space-x-1.5 shadow-lg ${
+          className={`absolute -top-3 -right-2 sm:-right-6 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
             activeChip === 'dept'
-              ? 'bg-purple-900/60 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#090b14]/80 border-white/15 text-slate-300'
+              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
+              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
           }`}
         >
-          <Cpu className="w-3.5 h-3.5 text-purple-300" />
-          <span>DEPT OF CSE</span>
+          <GraduationCap className="w-3.5 h-3.5 text-purple-300 shrink-0" />
+          <span className="font-sans text-xs font-medium tracking-normal whitespace-nowrap">
+            Dept. of Computer Science
+          </span>
         </motion.div>
 
-        {/* Chip 3: Bottom Left - KNOWLEDGE • CODE • HONOR */}
+        {/* Badge 2: Bottom Left - Code • Honor • Excellence */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('motto')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -bottom-3 -left-4 sm:-left-8 px-3.5 py-1.5 rounded-lg backdrop-blur-md border text-[10px] font-mono tracking-widest uppercase transition-all duration-300 flex items-center space-x-1.5 shadow-lg ${
+          className={`absolute -bottom-3 -left-3 sm:-left-7 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
             activeChip === 'motto'
-              ? 'bg-purple-900/60 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#090b14]/80 border-white/15 text-slate-300'
+              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
+              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
           }`}
         >
-          <Shield className="w-3 h-3 text-white" />
-          <span>CODE • HONOR • EXCELLENCE</span>
+          <Shield className="w-3.5 h-3.5 text-purple-300 shrink-0" />
+          <span className="font-sans text-xs font-medium tracking-normal whitespace-nowrap">
+            Code • Honor • Excellence
+          </span>
         </motion.div>
 
-        {/* Chip 4: Bottom Right - SYSTEM ACTIVE */}
+        {/* Badge 3: Bottom Right - Active Student Guild */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('sys')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -bottom-3 -right-4 sm:-right-8 px-3 py-1.5 rounded-lg backdrop-blur-md border text-[10px] font-mono tracking-wider transition-all duration-300 flex items-center space-x-2 shadow-lg ${
+          className={`absolute -bottom-3 -right-3 sm:-right-7 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
             activeChip === 'sys'
-              ? 'bg-purple-900/60 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#090b14]/80 border-white/15 text-slate-300'
+              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
+              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
           }`}
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-emerald-400 font-bold">GUILD ACTIVE</span>
+          <span className="relative flex h-2 w-2 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+          </span>
+          <span className="font-sans text-xs font-medium text-slate-200 tracking-normal whitespace-nowrap">
+            Active Student Guild
+          </span>
         </motion.div>
       </motion.div>
     </div>

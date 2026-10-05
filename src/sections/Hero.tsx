@@ -39,13 +39,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onAchievementsClick 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center space-x-3 mb-4"
+          className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-purple-950/50 border border-purple-500/30 backdrop-blur-md mb-3 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
         >
-          <div className="h-[1.5px] w-7 bg-purple-400 shadow-[0_0_8px_#c084fc]" />
-          <span className="font-mono text-xs text-purple-300 tracking-[0.25em] uppercase font-semibold">
-            DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING
+          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]" />
+          <span className="font-sans text-xs font-semibold text-purple-200 tracking-wide uppercase">
+            Department of Computer Science & Engineering
           </span>
-          <div className="h-[1.5px] w-7 bg-purple-400 shadow-[0_0_8px_#c084fc]" />
         </motion.div>
 
         {/* Centered Unique Interactive FIST Emblem */}
@@ -64,9 +63,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onAchievementsClick 
           className="space-y-6 max-w-3xl mx-auto flex flex-col items-center"
         >
           {/* Massive FIST Brand Title */}
-          <div className="space-y-1">
-            <span className="text-xs font-mono tracking-[0.3em] uppercase text-purple-200/80 block font-semibold">
-              THE STUDENT ENGINEERING GUILD
+          <div className="space-y-2">
+            <span className="text-xs sm:text-sm font-sans font-semibold tracking-[0.22em] uppercase text-purple-300/90 block">
+              Student Engineering Guild
             </span>
             <h1 className="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-none select-none drop-shadow-[0_10px_45px_rgba(168,85,247,0.35)]">
               FIST
@@ -87,36 +86,36 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onAchievementsClick 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={onExploreClick}
-              className="px-7 py-3.5 rounded-lg bg-white text-slate-950 font-bold text-xs font-mono tracking-wider hover:bg-purple-50 transition-all flex items-center space-x-2 cursor-pointer shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(168,85,247,0.45)] hover:scale-102 active:scale-98"
+              className="px-7 py-3 rounded-xl bg-white text-slate-950 font-semibold text-sm tracking-normal hover:bg-purple-50 transition-all flex items-center space-x-2.5 cursor-pointer shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(168,85,247,0.45)] hover:scale-102 active:scale-98"
             >
-              <span>EXPLORE DEPARTMENT</span>
-              <ArrowRight className="w-3.5 h-3.5 text-purple-700" />
+              <span>Explore Department</span>
+              <ArrowRight className="w-4 h-4 text-purple-700" />
             </button>
 
             <button
               onClick={onAchievementsClick}
-              className="px-7 py-3.5 rounded-lg bg-purple-950/50 text-purple-200 hover:text-white border border-purple-500/40 hover:border-purple-400 hover:bg-purple-900/80 text-xs font-mono tracking-wider transition-all flex items-center space-x-2 cursor-pointer shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:scale-102 active:scale-98"
+              className="px-7 py-3 rounded-xl bg-purple-950/60 text-purple-100 hover:text-white border border-purple-500/40 hover:border-purple-400 hover:bg-purple-900/80 text-sm font-semibold tracking-normal transition-all flex items-center space-x-2.5 cursor-pointer shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:scale-102 active:scale-98"
             >
-              <Trophy className="w-3.5 h-3.5 text-purple-400" />
-              <span>STUDENT ACHIEVEMENTS</span>
+              <Trophy className="w-4 h-4 text-purple-300" />
+              <span>Student Achievements</span>
             </button>
           </div>
 
           {/* Editorial Metadata Stream in White & Purple */}
-          <div className="pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-8 sm:gap-14 font-mono text-xs text-slate-400 w-full">
+          <div className="pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-8 sm:gap-14 font-sans text-xs text-slate-400 w-full">
             <div className="hover:text-purple-300 transition-colors text-center">
-              <span className="block text-white font-bold text-lg sm:text-2xl">480+</span>
-              <span className="text-[11px] text-purple-200/70">Undergraduates</span>
+              <span className="block text-white font-bold text-2xl sm:text-3xl tracking-tight">480+</span>
+              <span className="text-xs text-purple-200/80 font-medium">Undergraduates</span>
             </div>
             <div className="h-8 w-[1px] bg-white/[0.12]" />
             <div className="hover:text-purple-300 transition-colors text-center">
-              <span className="block text-white font-bold text-lg sm:text-2xl">65+</span>
-              <span className="text-[11px] text-purple-200/70">Active Systems</span>
+              <span className="block text-white font-bold text-2xl sm:text-3xl tracking-tight">65+</span>
+              <span className="text-xs text-purple-200/80 font-medium">Active Systems</span>
             </div>
             <div className="h-8 w-[1px] bg-white/[0.12]" />
             <div className="hover:text-purple-300 transition-colors text-center">
-              <span className="block text-purple-300 font-bold text-lg sm:text-2xl">38+</span>
-              <span className="text-[11px] text-purple-200/70">National Honors</span>
+              <span className="block text-purple-300 font-bold text-2xl sm:text-3xl tracking-tight">38+</span>
+              <span className="text-xs text-purple-200/80 font-medium">National Honors</span>
             </div>
           </div>
         </motion.div>

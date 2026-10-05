@@ -57,11 +57,11 @@ const CrystalAchievementCard: React.FC<{
       {/* Top Header */}
       <div className="relative z-10 space-y-3">
         <div className="flex items-center justify-between">
-          <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest bg-purple-950/60 border border-purple-500/30 text-purple-300 font-semibold flex items-center space-x-1.5 shadow-sm">
-            <Trophy className="w-3 h-3 text-purple-300" />
+          <span className="px-3 py-1 rounded-full text-xs font-sans bg-purple-950/60 border border-purple-500/30 text-purple-200 font-medium flex items-center space-x-1.5 shadow-sm">
+            <Trophy className="w-3.5 h-3.5 text-purple-300" />
             <span>{item.prize}</span>
           </span>
-          <span className="font-mono text-xs text-slate-400 font-medium">
+          <span className="font-sans text-xs text-slate-400 font-medium">
             {item.year}
           </span>
         </div>
@@ -71,7 +71,7 @@ const CrystalAchievementCard: React.FC<{
           <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors shrink-0 ml-2" />
         </h3>
 
-        <p className="text-xs font-mono text-cyan-300">
+        <p className="text-xs font-sans text-purple-300 font-medium">
           {item.competition}
         </p>
 
@@ -81,11 +81,11 @@ const CrystalAchievementCard: React.FC<{
       </div>
 
       {/* Bottom Contributor Roster */}
-      <div className="relative z-10 pt-5 mt-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono text-slate-400">
+      <div className="relative z-10 pt-5 mt-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-sans text-slate-300">
         <span className="truncate max-w-[200px] text-slate-300">
           {item.team.join(', ')}
         </span>
-        <span className="text-[11px] text-purple-400 font-semibold uppercase tracking-wider">
+        <span className="text-xs text-purple-300 font-medium">
           {item.category}
         </span>
       </div>
@@ -106,7 +106,7 @@ export const Achievements: React.FC = () => {
         <div className="flex items-center space-x-3 mb-10">
           <span className="font-mono text-xs text-purple-400 font-semibold tracking-widest">08</span>
           <div className="h-[1px] w-8 bg-white/20" />
-          <span className="font-mono text-xs text-slate-400 uppercase tracking-[0.2em]">HONORS & PODIUM RECOGNITIONS</span>
+          <span className="font-sans text-xs text-slate-400 uppercase tracking-widest font-semibold">HONORS & PODIUM RECOGNITIONS</span>
         </div>
 
         {/* Section Heading */}
@@ -115,12 +115,12 @@ export const Achievements: React.FC = () => {
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">
               Student Achievements & Victories.
             </h2>
-            <p className="text-sm font-mono text-slate-400 leading-relaxed">
+            <p className="text-sm font-sans text-slate-300 leading-relaxed">
               Benchmarked at 36-hr national hackathons, collegiate championships, and algorithmic research tracks.
             </p>
           </div>
 
-          <div className="text-xs font-mono text-purple-300 px-3.5 py-1.5 rounded-full bg-purple-950/40 border border-purple-500/30 flex items-center space-x-2">
+          <div className="text-xs font-sans font-medium text-purple-200 px-3.5 py-1.5 rounded-full bg-purple-950/40 border border-purple-500/30 flex items-center space-x-2">
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
             <span>28 Podiums Across State & National Leagues</span>
           </div>

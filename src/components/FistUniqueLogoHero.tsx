@@ -64,19 +64,19 @@ export const FistUniqueLogoHero: React.FC<FistUniqueLogoHeroProps> = ({
       onClick={handleClick}
       style={{ perspective: 1200 }}
       className={`relative w-full ${
-        isSmall ? 'max-w-[400px] h-[330px] sm:h-[350px]' : 'max-w-[500px] h-[440px] sm:h-[480px]'
+        isSmall ? 'max-w-[450px] h-[360px] sm:h-[380px]' : 'max-w-[540px] h-[460px] sm:h-[500px]'
       } flex items-center justify-center cursor-pointer select-none ${className}`}
     >
       {/* 1. Deep Multi-stage Radial White & Purple Atmosphere */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
           className={`${
-            isSmall ? 'w-[260px] h-[260px]' : 'w-[340px] h-[340px]'
+            isSmall ? 'w-[280px] h-[280px]' : 'w-[360px] h-[360px]'
           } rounded-full bg-purple-600/20 blur-[90px] animate-pulse-slow`}
         />
         <div
           className={`${
-            isSmall ? 'w-[150px] h-[150px]' : 'w-[200px] h-[200px]'
+            isSmall ? 'w-[160px] h-[160px]' : 'w-[220px] h-[220px]'
           } rounded-full bg-white/10 blur-[70px]`}
         />
       </div>
@@ -89,7 +89,7 @@ export const FistUniqueLogoHero: React.FC<FistUniqueLogoHeroProps> = ({
           transformStyle: 'preserve-3d',
         }}
         className={`relative ${
-          isSmall ? 'w-[280px] sm:w-[310px] h-[280px] sm:h-[310px]' : 'w-[340px] sm:w-[380px] h-[340px] sm:h-[380px]'
+          isSmall ? 'w-[320px] sm:w-[360px] h-[310px] sm:h-[340px]' : 'w-[370px] sm:w-[410px] h-[360px] sm:h-[400px]'
         } flex items-center justify-center`}
       >
         {/* Refined Smooth Ethereal Orbital Halo */}
@@ -194,57 +194,57 @@ export const FistUniqueLogoHero: React.FC<FistUniqueLogoHeroProps> = ({
           </AnimatePresence>
         </motion.div>
 
-        {/* 4. Three Professional Institutional Badges (EST. 2014 Removed, Professional Human Typography) */}
-        {/* Badge 1: Top Right - Dept. of Computer Science */}
+        {/* 4. Three High-Precision Institutional Badges (Perfect Corner Balance & Frosted Luxury Styling) */}
+        {/* Badge 1: Top Right Corner - Dept. of Computer Science */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('dept')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -top-3 -right-2 sm:-right-6 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
+          className={`absolute -top-3 -right-4 sm:-right-8 px-4 py-2 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2.5 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.18)] ${
             activeChip === 'dept'
-              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
+              ? 'bg-gradient-to-r from-purple-950/95 via-[#1b1035] to-purple-950/95 border-purple-400 text-white scale-105 shadow-[0_0_25px_rgba(168,85,247,0.4),inset_0_1px_2px_rgba(255,255,255,0.3)]'
+              : 'bg-[#090b14]/90 border-purple-500/30 text-slate-100 hover:border-purple-400/80 hover:text-white'
           }`}
         >
-          <GraduationCap className="w-3.5 h-3.5 text-purple-300 shrink-0" />
-          <span className="font-sans text-xs font-medium tracking-normal whitespace-nowrap">
+          <GraduationCap className="w-4 h-4 text-purple-300 shrink-0 drop-shadow-[0_0_8px_rgba(192,132,252,0.6)]" />
+          <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">
             Dept. of Computer Science
           </span>
         </motion.div>
 
-        {/* Badge 2: Bottom Left - Code • Honor • Excellence */}
+        {/* Badge 2: Bottom Left Corner - Code • Honor • Excellence */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('motto')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -bottom-3 -left-3 sm:-left-7 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
+          className={`absolute -bottom-3 -left-6 sm:-left-10 px-4 py-2 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2.5 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.18)] ${
             activeChip === 'motto'
-              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
+              ? 'bg-gradient-to-r from-purple-950/95 via-[#1b1035] to-purple-950/95 border-purple-400 text-white scale-105 shadow-[0_0_25px_rgba(168,85,247,0.4),inset_0_1px_2px_rgba(255,255,255,0.3)]'
+              : 'bg-[#090b14]/90 border-purple-500/30 text-slate-100 hover:border-purple-400/80 hover:text-white'
           }`}
         >
-          <Shield className="w-3.5 h-3.5 text-purple-300 shrink-0" />
-          <span className="font-sans text-xs font-medium tracking-normal whitespace-nowrap">
+          <Shield className="w-3.5 h-3.5 text-purple-300 shrink-0 drop-shadow-[0_0_8px_rgba(192,132,252,0.6)]" />
+          <span className="font-sans text-[11px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">
             Code • Honor • Excellence
           </span>
         </motion.div>
 
-        {/* Badge 3: Bottom Right - Active Student Guild */}
+        {/* Badge 3: Bottom Right Corner - Active Student Guild */}
         <motion.div
           style={{ translateZ: 50 }}
           onMouseEnter={() => setActiveChip('sys')}
           onMouseLeave={() => setActiveChip(null)}
-          className={`absolute -bottom-3 -right-3 sm:-right-7 px-3.5 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2 shadow-xl ${
+          className={`absolute -bottom-3 -right-6 sm:-right-10 px-4 py-2 rounded-full backdrop-blur-xl border transition-all duration-300 flex items-center space-x-2.5 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.18)] ${
             activeChip === 'sys'
-              ? 'bg-purple-950/90 border-purple-400 text-white scale-105 shadow-purple-500/30'
-              : 'bg-[#0b0e17]/85 border-white/15 text-slate-200 hover:border-purple-400/40'
+              ? 'bg-gradient-to-r from-purple-950/95 via-[#1b1035] to-purple-950/95 border-purple-400 text-white scale-105 shadow-[0_0_25px_rgba(168,85,247,0.4),inset_0_1px_2px_rgba(255,255,255,0.3)]'
+              : 'bg-[#090b14]/90 border-purple-500/30 text-slate-100 hover:border-purple-400/80 hover:text-white'
           }`}
         >
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+          <span className="relative flex h-2.5 w-2.5 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_10px_#34d399]" />
           </span>
-          <span className="font-sans text-xs font-medium text-slate-200 tracking-normal whitespace-nowrap">
+          <span className="font-sans text-[11px] sm:text-xs font-semibold text-slate-100 tracking-wide whitespace-nowrap">
             Active Student Guild
           </span>
         </motion.div>

@@ -39,12 +39,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick, onAchievementsClick 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-purple-950/50 border border-purple-500/30 backdrop-blur-md mb-3 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+          className="flex items-center justify-center space-x-3 mb-4"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]" />
-          <span className="font-sans text-xs font-semibold text-purple-200 tracking-wide uppercase">
-            Department of Computer Science & Engineering
+          <div className="h-[1.5px] w-7 bg-purple-400 shadow-[0_0_8px_#c084fc]" />
+          <span className="font-mono text-xs text-purple-300 tracking-[0.25em] uppercase font-semibold">
+            DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING
           </span>
+          <div className="h-[1.5px] w-7 bg-purple-400 shadow-[0_0_8px_#c084fc]" />
         </motion.div>
 
         {/* Centered Unique Interactive FIST Emblem */}

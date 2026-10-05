@@ -3,15 +3,34 @@ import { Faculty } from '../types';
 export const facultyData: Faculty[] = [
   {
     id: 'fac-1',
-    name: 'Dr. K. R. Soundararajan',
-    designation: 'Professor & Head of Department',
-    qualification: 'Ph.D. in Computer Science & Engineering',
-    areaOfExpertise: ['Artificial Intelligence', 'Distributed Systems', 'Data Science & Big Data'],
-    researchInterests: ['Machine Learning in Healthcare', 'Edge Computing', 'Fault-Tolerant Architectures'],
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80',
-    bio: 'Over 18+ years of academic and research leadership guiding undergraduate and postgraduate researchers, authoring multiple indexed journal papers, and fostering technological incubation in the department.',
-    email: 'hod.cse@college.edu',
-    publicationsCount: 42
+    name: 'Dr. J. Mathalai Raj',
+    designation: 'Assistant Professor & Head [I/C]',
+    qualification: 'M.E (CSE), Ph.D',
+    areaOfExpertise: ['Artificial Intelligence', 'Cloud Computing', 'Distributed Systems', 'Hybrid Cloud Architecture'],
+    researchInterests: ['AI-Driven Load Balancing', 'Distributed Anomaly Detection', 'Cloud Resource Optimization', 'Smart Campus Systems'],
+    photo: '/cse-hod.jpg',
+    bio: 'Dr. J. Mathalai Raj is an esteemed researcher and academician specializing in Artificial Intelligence and Cloud Computing architectures. With a visionary approach to engineering education, he leads the CSE department towards excellence by bridging the gap between cutting-edge industry practices and academic rigor.',
+    email: 'hod.cse@nscet.org',
+    publicationsCount: 18,
+    experience: [
+      'Head of Department [I/C], CSE, NSCET (2021 - Present)',
+      'Associate Professor, CSE, NSCET (2015 - 2021)'
+    ],
+    selectedPublications: [
+      'Optimizing Cloud Infrastructure using AI-driven Load Balancing — Journal of Cloud Computing, 2024',
+      'Deep Learning Approaches for Anomaly Detection in Distributed Networks — IEEE Transactions, 2023'
+    ],
+    fundedProjects: [
+      'AI-Powered Smart Campus Administration System',
+      'Cloud-based Scalable Architecture for Rural Healthcare'
+    ],
+    patents: [
+      'Automated Resource Provisioning Framework for Hybrid Clouds (Published - 2023)'
+    ],
+    awards: [
+      'Best Head of Department - 2024',
+      'Excellence in AI Research Award - 2023'
+    ]
   },
   {
     id: 'fac-2',

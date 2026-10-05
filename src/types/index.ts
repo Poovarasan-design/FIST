@@ -69,6 +69,11 @@ export interface Faculty {
   bio: string;
   email?: string;
   publicationsCount?: number;
+  experience?: string[];
+  selectedPublications?: string[];
+  fundedProjects?: string[];
+  patents?: string[];
+  awards?: string[];
 }
 
 export interface TechnologyItem {

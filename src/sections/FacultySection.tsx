@@ -3,6 +3,8 @@ import { facultyData } from '../data/faculty';
 import { Faculty } from '../types';
 import { ArrowUpRight } from 'lucide-react';
 import { Modal } from '../components/Modal';
+import { HodCrystalFrame } from '../components/HodCrystalFrame';
+import { FacultyCrystalFrame } from '../components/FacultyCrystalFrame';
 
 export const FacultySection: React.FC = () => {
   const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null);
@@ -13,8 +15,12 @@ export const FacultySection: React.FC = () => {
   const otherFaculty = facultyData.slice(1);
 
   return (
-    <section id="faculty" className="relative py-32 bg-[#06070a] text-[#f8fafc] border-t border-white/[0.06]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faculty" className="relative py-32 bg-[#06070a] text-[#f8fafc] border-t border-white/[0.06] overflow-hidden">
+      {/* Background ambient lighting accents */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-purple-700/10 rounded-full blur-[140px] pointer-events-none -z-0" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-violet-800/10 rounded-full blur-[120px] pointer-events-none -z-0" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         {/* Section Index Marker */}
         <div className="flex items-center space-x-3 mb-10">
           <span className="font-mono text-xs text-purple-400 font-semibold tracking-widest">06</span>
@@ -22,33 +28,21 @@ export const FacultySection: React.FC = () => {
           <span className="font-mono text-xs text-slate-400 uppercase tracking-[0.2em]">DEPARTMENT LEADERSHIP & FACULTY</span>
         </div>
 
-        {/* 1. HEAD OF THE DEPARTMENT (Dedicated Prominent Academic Section) */}
+        {/* 1. HEAD OF THE DEPARTMENT (Dedicated Prominent Academic Leadership Section) */}
         {hod && (
           <div
             onClick={() => setSelectedFaculty(hod)}
-            className="group cursor-pointer mb-24 p-8 sm:p-10 rounded-2xl bg-[#0c0e15] border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+            className="group cursor-pointer mb-24 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#0e0720]/90 via-[#0a0518]/95 to-[#06030e] border border-purple-500/25 hover:border-purple-400/50 shadow-[0_20px_60px_rgba(11,5,28,0.7)] hover:shadow-[0_25px_70px_rgba(147,51,234,0.2)] transition-all duration-500 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
           >
-            {/* HOD Portrait Frame */}
-            <div className="lg:col-span-5 relative aspect-[4/5] rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl">
-              <img
-                src={hod.photo}
-                alt={hod.name}
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-102"
+            {/* HOD Futuristic Crystal Profile Frame */}
+            <div className="lg:col-span-5 flex justify-center py-2 sm:py-4">
+              <HodCrystalFrame
+                imageSrc={hod.photo}
+                imageAlt={hod.name}
+                qualification={hod.qualification}
+                badgeText="HEAD OF THE DEPARTMENT [I/C]"
+                className="w-full max-w-[360px] sm:max-w-[400px]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-              <div className="absolute top-4 left-4">
-                <span className="px-3.5 py-1.5 rounded-full text-xs font-sans tracking-wide bg-purple-950/90 border border-purple-500/40 text-purple-200 font-semibold shadow-lg backdrop-blur-md">
-                  HEAD OF THE DEPARTMENT [I/C]
-                </span>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-sans text-slate-200">
-                <span className="font-semibold text-white">{hod.qualification}</span>
-                {hod.awards && hod.awards[0] && (
-                  <span className="text-purple-300 bg-purple-950/60 px-2.5 py-0.5 rounded border border-purple-500/30 text-[11px] font-medium">
-                    {hod.awards[0]}
-                  </span>
-                )}
-              </div>
             </div>
 
             {/* HOD Editorial Dossier */}
@@ -61,7 +55,9 @@ export const FacultySection: React.FC = () => {
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
                   <span>{hod.name}</span>
-                  <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                  <div className="w-10 h-10 rounded-full bg-purple-950/60 border border-purple-500/30 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-all shadow-md">
+                    <ArrowUpRight className="w-5 h-5 text-purple-300 group-hover:text-white transition-colors" />
+                  </div>
                 </h2>
                 <p className="text-base font-sans text-purple-300 font-medium">
                   {hod.designation} — NSCET
@@ -73,14 +69,14 @@ export const FacultySection: React.FC = () => {
               </p>
 
               <div className="space-y-2 pt-1">
-                <span className="text-xs font-sans uppercase tracking-wider text-slate-400 font-semibold block">
+                <span className="text-xs font-sans uppercase tracking-wider text-purple-300/80 font-semibold block">
                   Research Domains & Specializations
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {hod.areaOfExpertise.map((area) => (
                     <span
                       key={area}
-                      className="text-xs font-sans font-medium px-3 py-1.5 rounded-lg bg-purple-950/40 text-purple-200 border border-purple-500/30 shadow-sm"
+                      className="text-xs font-sans font-medium px-3.5 py-1.5 rounded-lg bg-purple-950/60 text-purple-200 border border-purple-400/30 shadow-sm"
                     >
                       {area}
                     </span>
@@ -90,10 +86,10 @@ export const FacultySection: React.FC = () => {
 
               {hod.experience && (
                 <div className="space-y-1.5 pt-1">
-                  <span className="text-xs font-sans uppercase tracking-wider text-slate-400 font-semibold block">
+                  <span className="text-xs font-sans uppercase tracking-wider text-purple-300/80 font-semibold block">
                     Leadership & Academic Appointments
                   </span>
-                  <div className="text-xs font-sans text-slate-300 space-y-1">
+                  <div className="text-xs font-sans text-slate-300 space-y-1.5">
                     {hod.experience.map((exp) => (
                       <div key={exp} className="flex items-center space-x-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" />
@@ -104,9 +100,12 @@ export const FacultySection: React.FC = () => {
                 </div>
               )}
 
-              <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-sans text-slate-400">
-                <span>Office: Department of CSE, NSCET</span>
-                <span className="text-purple-400 font-medium hover:text-purple-300 transition-colors">
+              <div className="pt-4 border-t border-purple-500/20 flex items-center justify-between text-xs font-sans text-slate-400">
+                <span className="flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                  <span>Office: Department of CSE, NSCET</span>
+                </span>
+                <span className="text-purple-300 font-medium group-hover:text-purple-200 group-hover:underline transition-all">
                   View Full Academic Profile & Research →
                 </span>
               </div>
@@ -114,9 +113,9 @@ export const FacultySection: React.FC = () => {
           </div>
         )}
 
-        {/* 2. FACULTY MEMBERS (Clean Academic Directory) */}
+        {/* 2. FACULTY MEMBERS (Refined Crystal Academic Cards) */}
         <div className="space-y-8">
-          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+          <div className="flex items-center justify-between pb-4 border-b border-purple-500/20">
             <div>
               <h3 className="text-2xl font-bold tracking-tight text-white font-display">
                 Department Faculty Members
@@ -132,29 +131,23 @@ export const FacultySection: React.FC = () => {
               <div
                 key={fac.id}
                 onClick={() => setSelectedFaculty(fac)}
-                className="group cursor-pointer p-6 rounded-xl bg-[#0c0e15] border border-white/[0.08] hover:border-purple-500/40 transition-all duration-300 space-y-5"
+                className="group cursor-pointer p-6 rounded-2xl bg-gradient-to-br from-[#0d071d]/90 via-[#090414]/95 to-[#06020c] border border-purple-500/20 hover:border-purple-400/50 shadow-lg hover:shadow-[0_12px_36px_rgba(147,51,234,0.18)] transition-all duration-300 space-y-5 flex flex-col justify-between"
               >
-                <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black border border-white/10 shadow-lg">
-                  <img
-                    src={fac.photo}
-                    alt={fac.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-102"
+                {/* Faculty Futuristic Crystal Profile Frame */}
+                <div className="w-full flex justify-center pt-1">
+                  <FacultyCrystalFrame
+                    imageSrc={fac.photo}
+                    imageAlt={fac.name}
+                    qualification={fac.qualification}
+                    experience={fac.experience && fac.experience[0] ? fac.experience[0] : ''}
+                    className="w-full max-w-[320px]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-sans text-slate-200">
-                    <span className="font-medium text-white">{fac.qualification}</span>
-                    {fac.experience && fac.experience[0] && (
-                      <span className="text-purple-300 bg-purple-950/70 px-2 py-0.5 rounded border border-purple-500/30 text-[10px] font-medium">
-                        {fac.experience[0].split(' ')[0]} Exp
-                      </span>
-                    )}
-                  </div>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-2 flex-1 pt-1">
                   <h4 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
                     <span>{fac.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-purple-400 group-hover:text-white transition-colors" />
                   </h4>
                   <p className="text-xs font-sans text-purple-300 font-medium">
                     {fac.designation} — NSCET
@@ -164,9 +157,13 @@ export const FacultySection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-sans text-slate-400">
-                  <span className="truncate max-w-[200px] text-purple-200/80">{fac.areaOfExpertise[0]}</span>
-                  <span className="text-purple-400 font-medium hover:text-purple-300">View Dossier →</span>
+                <div className="pt-3 border-t border-purple-500/15 flex items-center justify-between text-xs font-sans text-slate-400">
+                  <span className="truncate max-w-[180px] text-purple-200/90 font-medium">
+                    {fac.areaOfExpertise[0]}
+                  </span>
+                  <span className="text-purple-300 font-medium group-hover:text-purple-200 group-hover:underline">
+                    View Dossier →
+                  </span>
                 </div>
               </div>
             ))}
@@ -183,22 +180,35 @@ export const FacultySection: React.FC = () => {
         >
           {selectedFaculty && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-purple-950/15 p-5 rounded-2xl border border-purple-500/20">
-                <div className="md:col-span-4 relative aspect-[4/5] rounded-xl overflow-hidden border border-white/10 bg-black shadow-lg">
-                  <img
-                    src={selectedFaculty.photo}
-                    alt={selectedFaculty.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-purple-950/20 p-6 rounded-2xl border border-purple-500/25">
+                {/* Modal Profile Frame */}
+                <div className="md:col-span-5 flex justify-center py-2">
+                  {selectedFaculty.id === 'hod-mathalai-raj' ? (
+                    <HodCrystalFrame
+                      imageSrc={selectedFaculty.photo}
+                      imageAlt={selectedFaculty.name}
+                      qualification={selectedFaculty.qualification}
+                      badgeText="HEAD OF DEPARTMENT [I/C]"
+                      className="w-full max-w-[280px]"
+                    />
+                  ) : (
+                    <FacultyCrystalFrame
+                      imageSrc={selectedFaculty.photo}
+                      imageAlt={selectedFaculty.name}
+                      qualification={selectedFaculty.qualification}
+                      experience={selectedFaculty.experience && selectedFaculty.experience[0] ? selectedFaculty.experience[0] : ''}
+                      className="w-full max-w-[260px]"
+                    />
+                  )}
                 </div>
 
-                <div className="md:col-span-8 space-y-4">
+                <div className="md:col-span-7 space-y-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-white font-display">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
                       {selectedFaculty.name}
                     </h3>
-                    <p className="text-sm font-sans text-purple-300 font-medium">
-                      {selectedFaculty.designation}
+                    <p className="text-sm font-sans text-purple-300 font-medium mt-1">
+                      {selectedFaculty.designation} — Department of CSE
                     </p>
                     <p className="text-xs text-slate-300 mt-1">
                       {selectedFaculty.qualification}
@@ -219,7 +229,7 @@ export const FacultySection: React.FC = () => {
                       {selectedFaculty.awards.map((award) => (
                         <span
                           key={award}
-                          className="px-3 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-400/30 text-xs font-medium"
+                          className="px-3 py-1 rounded-full bg-purple-900/50 text-purple-200 border border-purple-400/40 text-xs font-medium"
                         >
                           🏆 {award}
                         </span>
@@ -248,7 +258,7 @@ export const FacultySection: React.FC = () => {
                   {selectedFaculty.areaOfExpertise.map((area) => (
                     <span
                       key={area}
-                      className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-sans text-slate-200 font-medium"
+                      className="px-3.5 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/25 text-xs font-sans text-purple-200 font-medium"
                     >
                       {area}
                     </span>
@@ -298,7 +308,7 @@ export const FacultySection: React.FC = () => {
                   <ul className="space-y-1.5 text-sm text-slate-300">
                     {selectedFaculty.fundedProjects.map((proj) => (
                       <li key={proj} className="flex items-start space-x-2 text-xs">
-                        <span className="text-emerald-400">✓</span>
+                        <span className="text-emerald-400 font-bold">✓</span>
                         <span>{proj}</span>
                       </li>
                     ))}
@@ -314,7 +324,7 @@ export const FacultySection: React.FC = () => {
                   </h4>
                   <ul className="space-y-1.5 text-sm text-slate-300">
                     {selectedFaculty.patents.map((pat) => (
-                      <li key={pat} className="p-3 rounded-lg bg-purple-950/20 border border-purple-500/20 text-xs text-purple-200">
+                      <li key={pat} className="p-3 rounded-lg bg-purple-950/30 border border-purple-500/30 text-xs text-purple-200">
                         💡 {pat}
                       </li>
                     ))}

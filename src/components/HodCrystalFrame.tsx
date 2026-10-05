@@ -17,7 +17,7 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
   qualification = 'M.E (CSE), Ph.D',
   badgeText = 'HEAD OF THE DEPARTMENT [I/C]',
   objectPosition = '50% 10%',
-  imageFilter = 'contrast(1.06) brightness(1.05) saturate(1.03)',
+  imageFilter = 'contrast(1.05) brightness(1.05) saturate(1.02)',
   className = '',
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -27,11 +27,11 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [7, -7]), {
     stiffness: 260,
     damping: 24,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-7, 7]), {
     stiffness: 260,
     damping: 24,
   });
@@ -73,19 +73,15 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
       >
         {/* Ambient Back Glow - Trapped Purple Radiance (behind the entire card) */}
         <div
-          className="absolute -inset-4 rounded-3xl bg-gradient-to-b from-purple-600/30 via-violet-900/20 to-purple-500/25 blur-2xl -z-10 transition-opacity duration-500 pointer-events-none"
-          style={{ opacity: isHovered ? 0.85 : 0.5 }}
+          className="absolute -inset-4 rounded-3xl bg-gradient-to-b from-purple-600/25 via-violet-900/15 to-purple-500/20 blur-2xl -z-10 transition-opacity duration-500 pointer-events-none"
+          style={{ opacity: isHovered ? 0.8 : 0.45 }}
         />
 
         {/* ========================================================================= */}
-        {/* INNER PORTRAIT WELL: PURE PROFESSIONAL ACADEMIC PRESENTATION              */}
-        {/* Clear eyes, clean skin tones, zero heavy purple tint, zero face overlays   */}
+        {/* INNER PORTRAIT WELL: 100% VISIBLE, CRISP, PROFESSIONAL ACADEMIC PHOTO     */}
         {/* ========================================================================= */}
-        <div className="absolute inset-[24px] sm:inset-[28px] rounded-xl overflow-hidden bg-[#130f24] shadow-2xl z-0">
-          {/* Subtle Studio Backdrop behind the subject */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(240,240,255,0.1)_0%,rgba(130,50,230,0.03)_60%,transparent_100%)] pointer-events-none" />
-
-          {/* Primary Photograph - Crisp, Clear, Natural Skin Tone & Lighting */}
+        <div className="absolute inset-[24px] sm:inset-[28px] rounded-xl overflow-hidden bg-white shadow-2xl z-0">
+          {/* Primary Photograph - 100% Unobstructed, Crisp, Professional */}
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -93,21 +89,21 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             style={{
               objectPosition: objectPosition,
               filter: isHovered
-                ? `${imageFilter} brightness(1.07)`
+                ? `${imageFilter} brightness(1.06)`
                 : imageFilter,
               transform: isHovered ? 'scale(1.02)' : 'scale(1)',
             }}
           />
 
-          {/* Subtle Grounding Shadow at bottom only (blends torso gently into frame plinth, never covers chin or face) */}
-          <div className="absolute bottom-0 inset-x-0 h-12 sm:h-14 bg-gradient-to-t from-[#090414]/85 via-[#090414]/25 to-transparent pointer-events-none z-[1]" />
+          {/* Very Subtle Grounding Shadow at bottom 8% only */}
+          <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#090414]/70 to-transparent pointer-events-none z-[1]" />
 
           {/* Crisp recessed rim line for realistic portrait mount depth */}
-          <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/10 pointer-events-none z-[2]" />
+          <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/10 pointer-events-none z-[2]" />
         </div>
 
         {/* ========================================================================= */}
-        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Unchanged Frame Design)             */}
+        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (HOLLOW APERTURE - ZERO FACE BLOCK)  */}
         {/* ========================================================================= */}
         <svg
           viewBox="0 0 400 500"
@@ -125,13 +121,13 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
 
             {/* Crystal Glass Primary Gradient */}
             <linearGradient id="hodCrystalPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#c084fc" stopOpacity="0.8" />
-              <stop offset="35%" stopColor="#7e22ce" stopOpacity="0.45" />
-              <stop offset="70%" stopColor="#3b0764" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#a855f7" stopOpacity="0.9" />
+              <stop offset="0%" stopColor="#c084fc" stopOpacity="0.85" />
+              <stop offset="35%" stopColor="#7e22ce" stopOpacity="0.5" />
+              <stop offset="70%" stopColor="#3b0764" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#a855f7" stopOpacity="0.95" />
             </linearGradient>
 
-            {/* Crystal Glass Facet Accent (Translucent Royal Amethyst) */}
+            {/* Crystal Glass Facet Accent */}
             <linearGradient id="hodFacetGlow" x1="0%" y1="100%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#9333ea" stopOpacity="0.95" />
               <stop offset="50%" stopColor="#e9d5ff" stopOpacity="0.6" />
@@ -162,18 +158,18 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             </filter>
           </defs>
 
-          {/* 1. OUTER CHASSIS / BEVELED BASE FRAME */}
-          <polygon
-            points="
-              50,22 350,22 
-              382,54 382,446 
-              350,478 50,478 
-              18,446 18,54
+          {/* 1. OUTER CHASSIS / BEVELED BASE FRAME (HOLLOW CENTER - EVENODD CUTOUT) */}
+          {/* Fills ONLY the surrounding crystal border; central portrait aperture is 100% transparent */}
+          <path
+            d="
+              M 50,22 L 350,22 L 382,54 L 382,446 L 350,478 L 50,478 L 18,446 L 18,54 Z
+              M 56,42 L 36,62 L 36,438 L 56,458 L 344,458 L 364,438 L 364,62 L 344,42 Z
             "
+            fillRule="evenodd"
             fill="url(#hodDeepBase)"
             stroke="url(#hodCrystalPrimary)"
             strokeWidth="2"
-            opacity="0.9"
+            opacity="0.95"
           />
 
           {/* Outer Specular Edge Highlight */}
@@ -187,7 +183,7 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             fill="none"
             stroke="url(#hodSpecularWhite)"
             strokeWidth="1.2"
-            strokeOpacity="0.75"
+            strokeOpacity="0.8"
           />
 
           {/* Inner Picture Frame Aperture Rim */}
@@ -200,8 +196,8 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
             "
             fill="none"
             stroke="url(#hodSpecularWhite)"
-            strokeWidth="1.5"
-            strokeOpacity="0.8"
+            strokeWidth="1.6"
+            strokeOpacity="0.85"
           />
 
           {/* 2. LATERAL PILLARS & STEPPED CRYSTAL FACETS (LEFT & RIGHT RAILS) */}
@@ -420,7 +416,7 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
         </svg>
 
         {/* ========================================================================= */}
-        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY (Never sweeps across the face)       */}
+        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY                                      */}
         {/* ========================================================================= */}
         <motion.div
           className="absolute -inset-[18px] sm:-inset-[22px] pointer-events-none z-15 overflow-hidden rounded-3xl"
@@ -439,23 +435,22 @@ export const HodCrystalFrame: React.FC<HodCrystalFrameProps> = ({
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* REFINED FLOATING CRYSTAL BADGES                                           */}
-        {/* Positioned safely on crest/plinth without covering the face or head       */}
+        {/* REFINED FLOATING CRYSTAL BADGES - CLEAN ACADEMIC PROFESSIONAL TYPOGRAPHY   */}
         {/* ========================================================================= */}
-        {/* Top Prestige Banner Tag - Mounted high on the apex crest, completely above portrait */}
+        {/* Top Prestige Banner Tag - Mounted high on the apex crest, above portrait */}
         <div className="absolute top-[4px] sm:top-[6px] inset-x-0 flex justify-center z-20 pointer-events-none">
-          <div className="px-3 py-0.5 rounded-md bg-[#0e0720]/95 border border-purple-400/50 shadow-[0_2px_12px_rgba(147,51,234,0.35)] backdrop-blur-md flex items-center space-x-1.5">
+          <div className="px-3.5 py-1 rounded-full bg-[#0e0720]/95 border border-purple-400/50 shadow-[0_2px_12px_rgba(147,51,234,0.35)] backdrop-blur-md flex items-center space-x-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-300 animate-pulse" />
-            <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-purple-100 uppercase">
+            <span className="font-sans text-[11px] font-semibold tracking-wider text-purple-100 uppercase">
               {badgeText}
             </span>
           </div>
         </div>
 
-        {/* Bottom Central Plaque Text (Integrated directly into the bottom pedestal) */}
-        <div className="absolute bottom-[2px] sm:bottom-[6px] inset-x-0 flex justify-center z-20 pointer-events-none">
-          <div className="px-4 py-1 flex items-center justify-center space-x-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] font-black tracking-[0.2em] text-white uppercase drop-shadow-[0_2px_8px_rgba(255,255,255,0.7)]">
+        {/* Bottom Central Plaque: Professional Academic Qualification */}
+        <div className="absolute bottom-[4px] sm:bottom-[8px] inset-x-0 flex justify-center z-20 pointer-events-none">
+          <div className="px-4 py-1 flex items-center justify-center">
+            <span className="font-sans text-xs sm:text-[13px] font-bold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(255,255,255,0.7)]">
               {qualification}
             </span>
           </div>

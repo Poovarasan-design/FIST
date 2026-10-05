@@ -17,7 +17,7 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
   qualification = '',
   experience = '',
   objectPosition = '50% 14%',
-  imageFilter = 'contrast(1.06) brightness(1.05) saturate(1.03)',
+  imageFilter = 'contrast(1.05) brightness(1.05) saturate(1.02)',
   className = '',
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -51,6 +51,11 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
     setIsHovered(false);
   };
 
+  // Clean concise qualification for bottom crystal plaque
+  const displayQualification = qualification
+    ? qualification.split(',').pop()?.trim() || qualification
+    : 'FACULTY';
+
   return (
     <motion.div
       ref={cardRef}
@@ -78,14 +83,10 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
         />
 
         {/* ========================================================================= */}
-        {/* INNER PORTRAIT WELL: NATURAL PROFESSIONAL FACULTY PRESENTATION            */}
-        {/* Crisp face visibility, natural lighting, zero dark purple face filters    */}
+        {/* INNER PORTRAIT WELL: 100% VISIBLE, CLEAR, CRISP ACADEMIC PHOTO            */}
         {/* ========================================================================= */}
-        <div className="absolute inset-[18px] sm:inset-[20px] rounded-lg overflow-hidden bg-[#130f24] shadow-xl z-0">
-          {/* Subtle Studio Backdrop */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(240,240,255,0.08)_0%,rgba(120,40,200,0.02)_60%,transparent_100%)] pointer-events-none" />
-
-          {/* Primary Photograph - High Contrast, Clear Eyes, Natural Skin & Clothes */}
+        <div className="absolute inset-[18px] sm:inset-[20px] rounded-lg overflow-hidden bg-white shadow-xl z-0">
+          {/* Primary Photograph */}
           <img
             src={imageSrc}
             alt={imageAlt}
@@ -99,15 +100,15 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             }}
           />
 
-          {/* Minimal Grounding Shadow at bottom only (blends torso gently into bottom plinth) */}
-          <div className="absolute bottom-0 inset-x-0 h-10 sm:h-12 bg-gradient-to-t from-[#090414]/80 via-[#090414]/20 to-transparent pointer-events-none z-[1]" />
+          {/* Minimal Soft Grounding Shadow at bottom only */}
+          <div className="absolute bottom-0 inset-x-0 h-9 bg-gradient-to-t from-[#090414]/70 to-transparent pointer-events-none z-[1]" />
 
           {/* Recessed Rim Line for Portrait Mount Depth */}
-          <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/10 pointer-events-none z-[2]" />
+          <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 pointer-events-none z-[2]" />
         </div>
 
         {/* ========================================================================= */}
-        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (Unchanged Frame Design)             */}
+        {/* SVG ORNAMENTAL CRYSTAL FRAME OVERLAY (HOLLOW APERTURE - ZERO FACE BLOCK)  */}
         {/* ========================================================================= */}
         <svg
           viewBox="0 0 360 450"
@@ -125,9 +126,9 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
 
             {/* Faculty Crystal Gradient */}
             <linearGradient id="facCrystalPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#b77bf2" stopOpacity="0.75" />
-              <stop offset="50%" stopColor="#6b21a8" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#9333ea" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#b77bf2" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="#6b21a8" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#9333ea" stopOpacity="0.85" />
             </linearGradient>
 
             {/* Specular White Rim Highlight */}
@@ -152,18 +153,18 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             </filter>
           </defs>
 
-          {/* 1. OUTER CHASSIS / 45-DEGREE CHAMFERED POLYGON */}
-          <polygon
-            points="
-              40,16 320,16 
-              346,42 346,408 
-              320,434 40,434 
-              14,408 14,42
+          {/* 1. OUTER CHASSIS / 45-DEGREE CHAMFERED POLYGON (HOLLOW CENTER - EVENODD CUTOUT) */}
+          {/* Fills ONLY the crystal frame border; portrait aperture is 100% hollow & transparent */}
+          <path
+            d="
+              M 40,16 L 320,16 L 346,42 L 346,408 L 320,434 L 40,434 L 14,408 L 14,42 Z
+              M 44,30 L 28,46 L 28,404 L 44,420 L 316,420 L 332,404 L 332,46 L 316,30 Z
             "
+            fillRule="evenodd"
             fill="url(#facDeepBase)"
             stroke="url(#facCrystalPrimary)"
-            strokeWidth="1.5"
-            opacity="0.88"
+            strokeWidth="1.6"
+            opacity="0.95"
           />
 
           {/* Outer Specular Ridge */}
@@ -177,7 +178,7 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             fill="none"
             stroke="url(#facSpecularWhite)"
             strokeWidth="1"
-            strokeOpacity="0.65"
+            strokeOpacity="0.7"
           />
 
           {/* Inner Picture Aperture Trim */}
@@ -190,8 +191,8 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
             "
             fill="none"
             stroke="url(#facSpecularWhite)"
-            strokeWidth="1.2"
-            strokeOpacity="0.75"
+            strokeWidth="1.3"
+            strokeOpacity="0.8"
           />
 
           {/* 2. LATERAL CRYSTAL ACCENT GEMS (Mid-Height) */}
@@ -303,7 +304,7 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
         </svg>
 
         {/* ========================================================================= */}
-        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY (Never sweeps across the face)       */}
+        {/* SPECULAR SHIMMER ON FRAME EDGES ONLY                                      */}
         {/* ========================================================================= */}
         <motion.div
           className="absolute -inset-[12px] sm:-inset-[14px] pointer-events-none z-15 overflow-hidden rounded-2xl"
@@ -322,13 +323,12 @@ export const FacultyCrystalFrame: React.FC<FacultyCrystalFrameProps> = ({
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* INTEGRATED REFINED PLAQUE BADGES                                          */}
+        {/* BOTTOM CENTRAL PLAQUE: PROFESSIONAL ACADEMIC TYPOGRAPHY                   */}
         {/* ========================================================================= */}
-        {/* Bottom Central Plaque: Qualification Text */}
-        <div className="absolute bottom-[2px] sm:bottom-[4px] inset-x-0 flex justify-center z-20 pointer-events-none">
-          <div className="px-3 py-0.5 flex items-center justify-center space-x-1">
-            <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.16em] text-white uppercase drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
-              {qualification || 'FACULTY • CSE'}
+        <div className="absolute bottom-[3px] sm:bottom-[6px] inset-x-0 flex justify-center z-20 pointer-events-none">
+          <div className="px-3 py-0.5 flex items-center justify-center">
+            <span className="font-sans text-[11px] sm:text-xs font-bold text-white tracking-wide drop-shadow-[0_2px_8px_rgba(255,255,255,0.7)]">
+              {displayQualification}
             </span>
           </div>
         </div>

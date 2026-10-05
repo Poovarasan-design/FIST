@@ -8,13 +8,13 @@ import { FacultyCrystalFrame } from '../components/FacultyCrystalFrame';
 
 // Optimized photographic positioning and tone clarity per faculty portrait
 const facultyPhotoSettings: Record<string, { objectPosition: string; imageFilter: string }> = {
-  'fac-1': { objectPosition: '50% 10%', imageFilter: 'contrast(1.06) brightness(1.05) saturate(1.03)' }, // Dr. J. Mathalai Raj (HOD)
-  'fac-2': { objectPosition: '50% 12%', imageFilter: 'contrast(1.07) brightness(1.05) saturate(1.02)' }, // Dr. K. Velkumar
-  'fac-3': { objectPosition: '50% 12%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.04)' }, // Mrs. R. Archana
-  'fac-4': { objectPosition: '50% 12%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.02)' }, // Ms. Abirami Kayathiri S
-  'fac-5': { objectPosition: '50% 12%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.04)' }, // Mrs. Anusuya V
-  'fac-6': { objectPosition: '50% 18%', imageFilter: 'contrast(1.10) brightness(1.07) saturate(1.05)' }, // Mrs. Venkatalakshmi M
-  'fac-7': { objectPosition: '50% 14%', imageFilter: 'contrast(1.06) brightness(1.04) saturate(1.03)' }, // Mrs. Vinothini V
+  'fac-1': { objectPosition: '50% 10%', imageFilter: 'contrast(1.05) brightness(1.05) saturate(1.02)' }, // Dr. J. Mathalai Raj (HOD)
+  'fac-2': { objectPosition: '50% 12%', imageFilter: 'contrast(1.06) brightness(1.05) saturate(1.02)' }, // Dr. K. Velkumar
+  'fac-3': { objectPosition: '50% 12%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.03)' }, // Mrs. R. Archana
+  'fac-4': { objectPosition: '50% 12%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.02)' }, // Ms. Abirami Kayathiri S
+  'fac-5': { objectPosition: '50% 12%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.03)' }, // Mrs. Anusuya V
+  'fac-6': { objectPosition: '50% 18%', imageFilter: 'contrast(1.08) brightness(1.06) saturate(1.04)' }, // Mrs. Venkatalakshmi M
+  'fac-7': { objectPosition: '50% 14%', imageFilter: 'contrast(1.05) brightness(1.04) saturate(1.02)' }, // Mrs. Vinothini V
 };
 
 export const FacultySection: React.FC = () => {
@@ -53,14 +53,14 @@ export const FacultySection: React.FC = () => {
                 qualification={hod.qualification}
                 badgeText="HEAD OF THE DEPARTMENT [I/C]"
                 objectPosition={facultyPhotoSettings[hod.id]?.objectPosition || '50% 10%'}
-                imageFilter={facultyPhotoSettings[hod.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
+                imageFilter={facultyPhotoSettings[hod.id]?.imageFilter || 'contrast(1.05) brightness(1.05) saturate(1.02)'}
                 className="w-full max-w-[360px] sm:max-w-[400px]"
               />
             </div>
 
             {/* HOD Editorial Dossier */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex items-center space-x-2 text-xs font-sans text-purple-400 font-semibold uppercase tracking-wider">
                   <span>DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING</span>
                   <span>•</span>
@@ -72,9 +72,16 @@ export const FacultySection: React.FC = () => {
                     <ArrowUpRight className="w-5 h-5 text-purple-300 group-hover:text-white transition-colors" />
                   </div>
                 </h2>
-                <p className="text-base font-sans text-purple-300 font-medium">
-                  {hod.designation} — NSCET
-                </p>
+                
+                {/* Clear Professional Degree & Designation Typography */}
+                <div className="flex flex-wrap items-center gap-3 pt-1">
+                  <span className="text-sm font-sans font-bold text-white bg-purple-950/80 border border-purple-400/40 px-3 py-1 rounded-lg shadow-sm">
+                    {hod.qualification}
+                  </span>
+                  <span className="text-base font-sans text-purple-300 font-medium">
+                    {hod.designation} — NSCET
+                  </span>
+                </div>
               </div>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
@@ -143,7 +150,7 @@ export const FacultySection: React.FC = () => {
             {otherFaculty.map((fac) => {
               const settings = facultyPhotoSettings[fac.id] || {
                 objectPosition: '50% 14%',
-                imageFilter: 'contrast(1.06) brightness(1.05) saturate(1.03)',
+                imageFilter: 'contrast(1.05) brightness(1.05) saturate(1.02)',
               };
 
               return (
@@ -165,22 +172,30 @@ export const FacultySection: React.FC = () => {
                     />
                   </div>
 
-                  <div className="space-y-2 flex-1 pt-1">
+                  <div className="space-y-2.5 flex-1 pt-1">
                     <h4 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors flex items-center justify-between">
                       <span>{fac.name}</span>
                       <ArrowUpRight className="w-4 h-4 text-purple-400 group-hover:text-white transition-colors" />
                     </h4>
-                    <div className="flex items-center justify-between">
+
+                    {/* Clear, High-Contrast Professional Degree & Designation */}
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between flex-wrap gap-1.5">
+                        <span className="text-xs font-sans font-bold text-white bg-purple-950/70 border border-purple-400/30 px-2.5 py-0.5 rounded-md shadow-sm">
+                          {fac.qualification}
+                        </span>
+                        {fac.experience && fac.experience[0] && (
+                          <span className="text-[11px] font-sans font-medium px-2 py-0.5 rounded-full bg-purple-950/60 border border-purple-400/30 text-purple-200">
+                            {fac.experience[0].split(' ')[0]} Exp
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs font-sans text-purple-300 font-medium">
                         {fac.designation} — NSCET
                       </p>
-                      {fac.experience && fac.experience[0] && (
-                        <span className="text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-purple-950/60 border border-purple-400/30 text-purple-200">
-                          {fac.experience[0].split(' ')[0]} Exp
-                        </span>
-                      )}
                     </div>
-                    <p className="text-xs font-sans text-slate-300 line-clamp-3 leading-relaxed pt-1">
+
+                    <p className="text-xs font-sans text-slate-300 line-clamp-2 leading-relaxed pt-1">
                       {fac.bio}
                     </p>
                   </div>
@@ -219,7 +234,7 @@ export const FacultySection: React.FC = () => {
                       qualification={selectedFaculty.qualification}
                       badgeText="HEAD OF THE DEPARTMENT [I/C]"
                       objectPosition={facultyPhotoSettings[selectedFaculty.id]?.objectPosition || '50% 10%'}
-                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
+                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.05) brightness(1.05) saturate(1.02)'}
                       className="w-full max-w-[280px]"
                     />
                   ) : (
@@ -229,7 +244,7 @@ export const FacultySection: React.FC = () => {
                       qualification={selectedFaculty.qualification}
                       experience={selectedFaculty.experience && selectedFaculty.experience[0] ? selectedFaculty.experience[0] : ''}
                       objectPosition={facultyPhotoSettings[selectedFaculty.id]?.objectPosition || '50% 14%'}
-                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.06) brightness(1.05) saturate(1.03)'}
+                      imageFilter={facultyPhotoSettings[selectedFaculty.id]?.imageFilter || 'contrast(1.05) brightness(1.05) saturate(1.02)'}
                       className="w-full max-w-[260px]"
                     />
                   )}
@@ -243,9 +258,11 @@ export const FacultySection: React.FC = () => {
                     <p className="text-sm font-sans text-purple-300 font-medium mt-1">
                       {selectedFaculty.designation} — Department of CSE
                     </p>
-                    <p className="text-xs text-slate-300 mt-1">
-                      {selectedFaculty.qualification}
-                    </p>
+                    <div className="mt-2">
+                      <span className="inline-block text-xs font-sans font-bold text-white bg-purple-950/70 border border-purple-400/30 px-3 py-1 rounded-md">
+                        {selectedFaculty.qualification}
+                      </span>
+                    </div>
                   </div>
 
                   {selectedFaculty.email && (
